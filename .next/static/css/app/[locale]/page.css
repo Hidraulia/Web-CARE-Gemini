@@ -1,0 +1,165 @@
+/*!****************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[3]!./src/app/[locale]/page.module.css ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************/
+.page_hero__uBGR4 {
+  position: relative;
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.page_heroBackground__3yIth {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.page_imageWrapper__6YY14 {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Image treatment for premium feel */
+.page_imageWrapper__6YY14 img {
+  object-fit: cover;
+  filter: brightness(0.6) contrast(1.1) saturate(0.8);
+  /* Ken Burns will be applied via Framer Motion in the component */
+}
+
+.page_heroContent__S83Ec {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+  max-width: 800px;
+  padding: 2rem;
+}
+
+.page_heroContent__S83Ec h1 {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.page_heroContent__S83Ec p {
+  font-size: 1.2rem;
+  font-family: var(--font-sans);
+  font-weight: 300;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.page_ctaButton__h6VH9 {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  background-color: var(--color-accent);
+  color: #fff;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.page_ctaButton__h6VH9:hover {
+  background-color: #a48e65;
+  transform: translateY(-2px);
+}
+
+.page_section__NK_B8 {
+  padding: var(--spacing-xxl) 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.page_sectionHeader__r3gZ5 {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.page_sectionTitle__frafn {
+  font-size: 2.5rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.page_sectionSubtitle__rfZPu {
+  font-size: 1rem;
+  color: var(--color-text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.page_grid___q5EG {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: var(--spacing-lg);
+  gap: var(--spacing-lg);
+}
+
+.page_card__hykrW {
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.page_cardImage__A1y81 {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(20%) contrast(1.1);
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.8s ease;
+}
+
+.page_card__hykrW:hover .page_cardImage__A1y81 {
+  transform: scale(1.05);
+  filter: grayscale(0%) contrast(1.1);
+}
+
+.page_cardOverlay__Yhtor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 60%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2rem;
+  color: #fff;
+}
+
+.page_cardTitle__8c3Mb {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.page_cardLink__kXcmV {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: var(--font-sans);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.page_cardLink__kXcmV::after {
+  content: "→";
+  transition: transform 0.3s ease;
+}
+
+.page_card__hykrW:hover .page_cardLink__kXcmV::after {
+  transform: translateX(5px);
+}
+
