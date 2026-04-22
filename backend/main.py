@@ -3,14 +3,18 @@ from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from pydantic import BaseModel
 from typing import Optional
+from passlib.context import CryptContext
 
 import models
 from database import SessionLocal, engine
 
-# Ensure tables are created (useful if someone forgets to run init_db.py)
+# Ensure tables are created
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="CARE Backend API")
+
+# Password hashing context
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 # Allow CORS since Next.js frontend runs on 3000
 app.add_middleware(
@@ -34,7 +38,7 @@ class LeadCreate(BaseModel):
     email: str
     company: Optional[str] = None
     message: str
-    client_type: str  # E.g., 'b2b', 'interiorista', 'b2c'
+    client_type: str  # 'b2b', 'interiorista', 'b2c'
 
 class LoginRequest(BaseModel):
     email: str
@@ -56,10 +60,20 @@ def create_lead(lead: LeadCreate, db: Session = Depends(get_db)):
 
 @app.post("/api/auth/login")
 def login(request: LoginRequest, db: Session = Depends(get_db)):
-    # Note: Using plain text matching for prototyping. Use passlib/bcrypt in production.
     user = db.query(models.User).filter(models.User.email == request.email).first()
-    if not user or user.password_hash != request.password:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Incorrect email or password")
+    if not user:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Credenciales incorrectas")
+
+    # Verify bcrypt hash — falls back to plain-text check for legacy seeded users
+    password_valid = False
+    try:
+        password_valid = pwd_context.verify(request.password, user.password_hash)
+    except Exception:
+        # Legacy plain-text fallback (only for development seeds)
+        password_valid = (user.password_hash == request.password)
+
+    if not password_valid:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Credenciales incorrectas")
     
     return {
         "id": user.id,
@@ -68,3 +82,7 @@ def login(request: LoginRequest, db: Session = Depends(get_db)):
         "empresa_nombre": user.empresa_nombre,
         "especialidad": user.especialidad
     }
+
+@app.get("/api/health")
+def health_check():
+    return {"status": "ok", "service": "CARE Backend API"}

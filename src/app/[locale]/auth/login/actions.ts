@@ -8,10 +8,11 @@ export async function loginAction(formData: FormData) {
   const password = formData.get("password") as string;
   
   try {
+    // redirectTo /es/privado — middleware will intercept and forward to the correct role dashboard
     await signIn("credentials", { 
       email, 
       password, 
-      redirectTo: `/es/auth/login` // Middleware will intercept this and forward to correct dashboard
+      redirectTo: `/es/privado/empresa`,
     });
   } catch (error) {
     if (error instanceof AuthError) {
@@ -22,7 +23,7 @@ export async function loginAction(formData: FormData) {
           return { error: 'Ocurrió un error al iniciar sesión.' };
       }
     }
-    throw error; // Let Next.js handle the redirect exception thrown by signIn
+    throw error; // Next.js throws NEXT_REDIRECT — pass it through
   }
 }
 

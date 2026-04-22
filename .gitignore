@@ -9,3 +9,7 @@ yarn-error.log*
 credenciales_care.txt
 __pycache__/
 *.pyc
+backend/care.db
+*.db
+*.sqlite
+*.sqlite3
