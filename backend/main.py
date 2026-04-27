@@ -16,10 +16,10 @@ app = FastAPI(title="CARE Backend API")
 # Password hashing context
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-# Allow CORS since Next.js frontend runs on 3000
+# Allow CORS completely for Vercel deployment (TODO: restrict to vercel domain in production)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
