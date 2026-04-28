@@ -49,7 +49,7 @@ export default function Home({ params: { locale } }: { params: { locale: string 
           <motion.p variants={fadeIn} style={{ textTransform: "uppercase", letterSpacing: "0.2em", fontSize: "0.85rem", color: "var(--color-accent)", marginBottom: "1rem" }}>
             Maison CARE
           </motion.p>
-          <motion.h1 variants={fadeIn} style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(3rem, 6vw, 5rem)", fontWeight: 400, leadingTrim: "both", textEdge: "cap", lineHeight: 1.1, marginBottom: "1.5rem" }}>
+          <motion.h1 variants={fadeIn}style={{fontFamily: "var(--font-serif)", fontSize: "clamp(3rem, 6vw, 5rem)", fontWeight: 400, lineHeight: 1.1, marginBottom: "1.5rem"}}>
             Intensidad Real. <br />
             Precisión Milimétrica.
           </motion.h1>
