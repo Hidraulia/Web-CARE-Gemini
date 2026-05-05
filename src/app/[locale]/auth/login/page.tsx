@@ -10,9 +10,16 @@ export default function Login() {
 
   const handleSubmit = async (formData: FormData) => {
     setError(null);
-    const result = await loginAction(formData);
-    if (result?.error) {
-      setError(result.error);
+    try {
+      const result = await loginAction(formData);
+      if (!result) return; // Next.js redirect might throw or result might be undefined on success
+      
+      if (result.error) {
+        setError(result.error);
+      }
+    } catch (err) {
+      console.error(err);
+      setError("Error inesperado en el servidor. Intente de nuevo.");
     }
   };
 
