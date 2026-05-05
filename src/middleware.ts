@@ -3,10 +3,10 @@ import { auth } from '@/auth';
 
 export default auth((req) => {
   const { pathname } = req.nextUrl;
-  
+
   // 1. Skip assets and API
   if (
-    pathname.startsWith('/_next') || 
+    pathname.startsWith('/_next') ||
     pathname.startsWith('/api') ||
     pathname.startsWith('/img') ||
     pathname.startsWith('/images-slider')
@@ -36,12 +36,12 @@ export default auth((req) => {
   // 3. Auth Protection for /privado routes
   if (pathname.includes('/privado')) {
     if (!isLoggedIn) {
-       return NextResponse.redirect(new URL(`/${locale}/auth/login`, req.url));
+      return NextResponse.redirect(new URL(`/${locale}/auth/login`, req.url));
     }
-    
+
     // Check if the user is forced to change their password
     if (req.auth?.user?.requires_password_change) {
-       return NextResponse.redirect(new URL(`/${locale}/auth/change-password`, req.url));
+      return NextResponse.redirect(new URL(`/${locale}/auth/change-password`, req.url));
     }
 
     // Advanced: Role-based route protection
@@ -75,5 +75,6 @@ function getRolePath(role?: string) {
 }
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
+  // Ignorar todas las rutas que tengan un punto (imágenes, favicons, etc.)
+  matcher: ['/((?!api|_next/static|_next/image|.*\\..*|favicon.ico).*)']
 };
