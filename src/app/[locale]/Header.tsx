@@ -46,7 +46,7 @@ export default function Header({ locale, isLoggedIn, privateLink }: { locale: st
         }}
       >
         <div>
-          <Logo locale={locale} size="1.5rem" />
+          <Logo locale={locale} />
         </div>
         
         {/* Desktop Nav */}
@@ -121,7 +121,7 @@ export default function Header({ locale, isLoggedIn, privateLink }: { locale: st
             }}
           >
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "3rem" }}>
-              <Logo locale={locale} size="1.5rem" />
+              <Logo locale={locale} />
               <button onClick={() => setMobileMenuOpen(false)} style={{ background: "transparent", border: "none", color: "inherit", cursor: "pointer" }}>
                 <X size={32} />
               </button>

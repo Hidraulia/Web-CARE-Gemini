@@ -7,7 +7,7 @@ export default function Footer({ locale }: { locale: string }) {
       <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '3rem' }}>
         <div>
           <div style={{ marginBottom: '1rem' }}>
-            <Logo locale={locale} size="1.5rem" />
+            <Logo locale={locale} />
           </div>
           <p style={{ fontSize: '0.9rem', lineHeight: 1.6, opacity: 0.8 }}>
             Diseño técnico, fabricación de lujo y ejecución integral para proyectos exigentes.
