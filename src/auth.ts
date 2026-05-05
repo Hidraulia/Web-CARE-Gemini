@@ -94,7 +94,7 @@ export const {
     },
     session({ session, token }) {
       if (token && session.user) {
-        session.user.role = token.role as "b2b" | "interiorista" | "b2c";
+        session.user.role = token.role as string;
         session.user.id = token.id as string;
         session.user.empresa_nombre = token.empresa_nombre as string | null;
         session.user.especialidad = token.especialidad as string | null;

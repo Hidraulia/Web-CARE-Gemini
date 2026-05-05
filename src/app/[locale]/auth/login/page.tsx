@@ -30,15 +30,35 @@ export default function Login() {
 
       if (res?.error) {
         setError("Email o contraseña incorrectos.");
+        setIsLoading(false);
       } else if (res?.ok) {
-        router.push("/es/privado");
+        // Obtenemos la sesión en el cliente para redirección explícita
+        const { getSession } = await import("next-auth/react");
+        const session = await getSession();
+        
+        if (session?.user?.requires_password_change) {
+          router.push("/es/auth/change-password");
+        } else {
+          const userRole = session?.user?.role as string;
+          let roleFolder = "";
+          if (userRole === "b2b") roleFolder = "empresa";
+          else if (userRole === "b2c" || userRole === "vip") roleFolder = "vip";
+          else if (userRole === "interiorista" || userRole === "pro") roleFolder = "interiorista";
+          
+          if (roleFolder) {
+            router.push(`/es/privado/${roleFolder}`);
+          } else {
+            // Si por algún motivo el rol no se reconoce, lo enviamos al base para que el middleware actúe
+            router.push("/es/privado");
+          }
+        }
       } else {
         setError("Error de conexión con el servidor");
+        setIsLoading(false);
       }
     } catch (err) {
       console.error(err);
       setError("Error de conexión con el servidor");
-    } finally {
       setIsLoading(false);
     }
   };
