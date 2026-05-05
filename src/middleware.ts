@@ -56,16 +56,7 @@ export default auth((req) => {
       return NextResponse.redirect(new URL(`/${locale}/privado/${targetRolePath}`, req.url));
     }
 
-    // D. Advanced: Role-based route protection
-    if (pathname.includes('/privado/empresa') && role !== 'b2b') {
-      return NextResponse.redirect(new URL(`/${locale}/privado/${targetRolePath}`, req.url));
-    }
-    if (pathname.includes('/privado/interiorista') && role !== 'interiorista') {
-      return NextResponse.redirect(new URL(`/${locale}/privado/${targetRolePath}`, req.url));
-    }
-    if (pathname.includes('/privado/vip') && role !== 'b2c') {
-      return NextResponse.redirect(new URL(`/${locale}/privado/${targetRolePath}`, req.url));
-    }
+    // D. Removed aggressive role checks. Subfolders rely on their own page-level auth checks.
   }
 
   // 4. Redirect from login if already logged in
@@ -86,8 +77,10 @@ export default auth((req) => {
 function getRolePath(role?: string) {
   switch (role) {
     case 'b2b': return 'empresa';
-    case 'interiorista': return 'interiorista';
-    case 'b2c': return 'vip';
+    case 'interiorista': 
+    case 'pro': return 'interiorista';
+    case 'b2c': 
+    case 'vip': return 'vip';
     default: return '';
   }
 }
