@@ -40,7 +40,7 @@ export default auth((req) => {
     }
 
     // A. Priority: Password Change Check
-    if (req.auth?.user?.requires_password_change) {
+    if (req.auth?.user?.must_change_password) {
       return NextResponse.redirect(new URL(`/${locale}/auth/change-password`, req.url));
     }
 
@@ -61,7 +61,7 @@ export default auth((req) => {
 
   // 4. Redirect from login if already logged in
   if (pathname.includes('/auth/login') && isLoggedIn) {
-    if (req.auth?.user?.requires_password_change) {
+    if (req.auth?.user?.must_change_password) {
       return NextResponse.redirect(new URL(`/${locale}/auth/change-password`, req.url));
     }
     

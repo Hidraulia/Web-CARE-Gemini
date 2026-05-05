@@ -6,10 +6,10 @@ declare module "next-auth" {
   interface Session {
     user: {
       id: string;
-      role: "b2b" | "interiorista" | "b2c";
+      role: string;
       empresa_nombre?: string | null;
       especialidad?: string | null;
-      requires_password_change?: boolean;
+      must_change_password?: boolean;
     } & DefaultSession["user"];
   }
 }
@@ -71,7 +71,7 @@ export const {
             role: user.role,
             empresa_nombre: user.empresa_nombre,
             especialidad: user.especialidad,
-            requires_password_change: user.requires_password_change
+            must_change_password: user.requires_password_change
           } as any;
           
         } catch (error) {
@@ -88,17 +88,17 @@ export const {
         token.empresa_nombre = (user as any).empresa_nombre;
         token.especialidad = (user as any).especialidad;
         token.id = user.id;
-        token.requires_password_change = (user as any).requires_password_change;
+        token.must_change_password = (user as any).must_change_password;
       }
       return token;
     },
     session({ session, token }) {
       if (token && session.user) {
-        session.user.role = token.role as string;
         session.user.id = token.id as string;
+        session.user.role = token.role as string;
+        session.user.must_change_password = token.must_change_password as boolean;
         session.user.empresa_nombre = token.empresa_nombre as string | null;
         session.user.especialidad = token.especialidad as string | null;
-        session.user.requires_password_change = token.requires_password_change as boolean;
       }
       return session;
     },

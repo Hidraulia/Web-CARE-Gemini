@@ -32,26 +32,24 @@ export default function Login() {
         setError("Email o contraseña incorrectos.");
         setIsLoading(false);
       } else if (res?.ok) {
-        // Obtenemos la sesión en el cliente para redirección explícita
         const { getSession } = await import("next-auth/react");
         const session = await getSession();
-        
-        if (session?.user?.requires_password_change) {
-          router.push("/es/auth/change-password");
-        } else {
-          const userRole = session?.user?.role as string;
-          let roleFolder = "";
-          if (userRole === "b2b") roleFolder = "empresa";
-          else if (userRole === "b2c" || userRole === "vip") roleFolder = "vip";
-          else if (userRole === "interiorista" || userRole === "pro") roleFolder = "interiorista";
-          
-          if (roleFolder) {
-            router.push(`/es/privado/${roleFolder}`);
-          } else {
-            // Si por algún motivo el rol no se reconoce, lo enviamos al base para que el middleware actúe
-            router.push("/es/privado");
-          }
+        const user = session?.user;
+
+        // 1. Prioridad absoluta: Cambio de contraseña obligatorio
+        if (user?.must_change_password) {
+          return router.push("/es/auth/change-password");
         }
+
+        // 2. Si ya cambió la contraseña, calculamos su carpeta por rol
+        const role = user?.role;
+        let destination = "/es/privado";
+
+        if (role === "b2b") destination = "/es/privado/empresa";
+        else if (role === "b2c" || role === "vip") destination = "/es/privado/vip";
+        else if (role === "interiorista" || role === "pro") destination = "/es/privado/interiorista";
+
+        router.push(destination);
       } else {
         setError("Error de conexión con el servidor");
         setIsLoading(false);
