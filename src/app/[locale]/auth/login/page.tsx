@@ -1,29 +1,46 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { loginAction } from "./actions";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function Login() {
+  const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const [focusedField, setFocusedField] = useState<string | null>(null);
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async (formData: FormData) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     setError(null);
     setIsLoading(true);
+
+    const formData = new FormData(e.currentTarget);
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
+
     try {
-      const result = await loginAction(formData);
-      if (!result) return; // Next.js redirect
-      
-      if (result.error) {
-        setError(result.error);
+      const res = await signIn("credentials", {
+        redirect: false,
+        email,
+        password,
+      });
+
+      if (res?.error) {
+        setError("Email o contraseña incorrectos.");
+        setIsLoading(false);
+      } else if (res?.ok) {
+        // Redirigir y mantener estado de carga para no parpadear
+        router.push("/es/privado");
+      } else {
+        setError("El servidor no responde. Por favor, inténtelo de nuevo.");
         setIsLoading(false);
       }
     } catch (err) {
       console.error(err);
-      setError("Error de conexión con el servidor. Verifique sus credenciales e intente nuevamente.");
+      setError("Error de red o servidor no disponible. Verifique su conexión.");
       setIsLoading(false);
     }
   };
@@ -94,7 +111,7 @@ export default function Login() {
             </p>
           </div>
 
-          <form action={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+          <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
             <div>
                <label htmlFor="email" style={labelStyle}>Identificador Corporativo / Email</label>
                <input 
