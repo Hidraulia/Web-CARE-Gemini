@@ -45,14 +45,19 @@ export default auth((req) => {
     }
 
     // Advanced: Role-based route protection
+    // Redirect base /privado to the correct role dashboard
+    if (pathname === `/${locale}/privado` || pathname === `/${locale}/privado/`) {
+      return NextResponse.redirect(new URL(`/${locale}/privado/${getRolePath(role)}`, req.url));
+    }
+
     // Check if the user is trying to access a section they don't have access to
     if (pathname.includes('/privado/empresa') && role !== 'b2b') {
       return NextResponse.redirect(new URL(`/${locale}/privado/${getRolePath(role)}`, req.url));
     }
-    if (pathname.includes('/privado/profesional') && role !== 'interiorista') {
+    if (pathname.includes('/privado/interiorista') && role !== 'interiorista') {
       return NextResponse.redirect(new URL(`/${locale}/privado/${getRolePath(role)}`, req.url));
     }
-    if (pathname.includes('/privado/residencial') && role !== 'b2c') {
+    if (pathname.includes('/privado/vip') && role !== 'b2c') {
       return NextResponse.redirect(new URL(`/${locale}/privado/${getRolePath(role)}`, req.url));
     }
   }
@@ -68,8 +73,8 @@ export default auth((req) => {
 function getRolePath(role?: string) {
   switch (role) {
     case 'b2b': return 'empresa';
-    case 'interiorista': return 'profesional';
-    case 'b2c': return 'residencial';
+    case 'interiorista': return 'interiorista';
+    case 'b2c': return 'vip';
     default: return '';
   }
 }

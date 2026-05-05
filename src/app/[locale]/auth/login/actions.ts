@@ -8,11 +8,11 @@ export async function loginAction(formData: FormData) {
   const password = formData.get("password") as string;
   
   try {
-    // redirectTo /es/privado — middleware will intercept and forward to the correct role dashboard
+    // redirectTo base /privado — middleware will intercept and forward to the correct role dashboard
     await signIn("credentials", { 
       email, 
       password, 
-      redirectTo: `/es/privado/empresa`,
+      redirectTo: `/es/privado`,
     });
   } catch (error) {
     if (error instanceof AuthError) {

@@ -18,8 +18,8 @@ export function generateStaticParams() {
 function getRolePath(role?: string) {
   switch (role) {
     case 'b2b': return 'empresa';
-    case 'interiorista': return 'profesional';
-    case 'b2c': return 'residencial';
+    case 'interiorista': return 'interiorista';
+    case 'b2c': return 'vip';
     default: return '';
   }
 }
