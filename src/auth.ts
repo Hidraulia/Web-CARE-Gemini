@@ -81,7 +81,7 @@ export const {
       return token;
     },
     session({ session, token }) {
-      if (session.user && token.role) {
+      if (token && session.user) {
         session.user.role = token.role as "b2b" | "interiorista" | "b2c";
         session.user.id = token.id as string;
         session.user.empresa_nombre = token.empresa_nombre as string | null;

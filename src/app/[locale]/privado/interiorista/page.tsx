@@ -1,8 +1,13 @@
 import { auth } from "@/auth";
+import { redirect } from "next/navigation";
 
 export default async function InterioristaDashboard() {
   const session = await auth();
   const user = session?.user;
+
+  if (user?.role !== "interiorista") {
+    redirect("/es/privado");
+  }
 
   return (
     <div style={{ padding: "4rem 2rem", maxWidth: "1200px", margin: "0 auto" }}>
