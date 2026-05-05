@@ -30,17 +30,15 @@ export default function Login() {
 
       if (res?.error) {
         setError("Email o contraseña incorrectos.");
-        setIsLoading(false);
       } else if (res?.ok) {
-        // Redirigir y mantener estado de carga para no parpadear
         router.push("/es/privado");
       } else {
-        setError("El servidor no responde. Por favor, inténtelo de nuevo.");
-        setIsLoading(false);
+        setError("Error de conexión con el servidor");
       }
     } catch (err) {
       console.error(err);
-      setError("Error de red o servidor no disponible. Verifique su conexión.");
+      setError("Error de conexión con el servidor");
+    } finally {
       setIsLoading(false);
     }
   };
