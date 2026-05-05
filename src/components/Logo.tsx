@@ -6,8 +6,9 @@ export default function Logo({ locale = "es" }: { locale?: string }) {
     <Link 
       href={`/${locale}`} 
       style={{ 
-        display: 'inline-flex',
-        alignItems: 'center',
+        display: 'inline-flex', 
+        alignItems: 'center', 
+        textDecoration: 'none' 
       }}
     >
       <Image 
@@ -15,12 +16,12 @@ export default function Logo({ locale = "es" }: { locale?: string }) {
         alt="CARE Mobiliario Logo" 
         width={140} 
         height={40} 
+        priority
         style={{ 
           objectFit: 'contain',
           height: '40px',
           width: 'auto'
         }}
-        priority
       />
     </Link>
   );
