@@ -8,7 +8,7 @@ export default async function InterioristaDashboard() {
     <div style={{ padding: "4rem 2rem", maxWidth: "1200px", margin: "0 auto" }}>
       <div style={{ marginBottom: "3rem" }}>
         <h1 style={{ fontFamily: "var(--font-serif)", fontSize: "2.5rem", marginBottom: "0.5rem" }}>
-          Panel Profesional
+          Panel Profesional Interiorista
         </h1>
         <p style={{ color: "var(--color-accent)", fontSize: "1.1rem", fontWeight: 500 }}>
           {user?.especialidad || "Interiorismo / Arquitectura"}

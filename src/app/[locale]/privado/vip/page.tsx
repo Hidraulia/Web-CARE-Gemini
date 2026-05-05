@@ -8,7 +8,7 @@ export default async function VIPDashboard() {
     <div style={{ padding: "4rem 2rem", maxWidth: "1200px", margin: "0 auto" }}>
       <div style={{ marginBottom: "3rem" }}>
         <h1 style={{ fontFamily: "var(--font-serif)", fontSize: "2.5rem", marginBottom: "0.5rem" }}>
-          Acceso VIP
+          Acceso VIP Exclusivo
         </h1>
         <p style={{ color: "var(--color-accent)", fontSize: "1.1rem", fontWeight: 500 }}>
           Cliente Exclusivo CARE
