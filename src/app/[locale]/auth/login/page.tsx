@@ -8,18 +8,23 @@ export default function Login() {
   const [error, setError] = useState<string | null>(null);
   const [focusedField, setFocusedField] = useState<string | null>(null);
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleSubmit = async (formData: FormData) => {
     setError(null);
+    setIsLoading(true);
     try {
       const result = await loginAction(formData);
-      if (!result) return; // Next.js redirect might throw or result might be undefined on success
+      if (!result) return; // Next.js redirect
       
       if (result.error) {
         setError(result.error);
+        setIsLoading(false);
       }
     } catch (err) {
       console.error(err);
-      setError("Error inesperado en el servidor. Intente de nuevo.");
+      setError("Error de conexión con el servidor. Verifique sus credenciales e intente nuevamente.");
+      setIsLoading(false);
     }
   };
 
@@ -132,24 +137,26 @@ export default function Login() {
 
             <button 
               type="submit" 
+              disabled={isLoading}
               style={{ 
                 marginTop: "1rem", 
-                backgroundColor: "var(--color-accent)", 
-                color: "#fff", 
+                backgroundColor: isLoading ? "transparent" : "var(--color-accent)", 
+                color: isLoading ? "var(--color-accent)" : "#fff", 
                 padding: "1.2rem", 
                 border: "1px solid var(--color-accent)", 
-                cursor: "pointer", 
+                cursor: isLoading ? "wait" : "pointer", 
                 fontSize: "0.9rem", 
                 textTransform: "uppercase", 
                 letterSpacing: "0.15em", 
                 fontWeight: 600, 
                 borderRadius: "4px",
-                transition: "all 0.3s ease"
+                transition: "all 0.3s ease",
+                opacity: isLoading ? 0.7 : 1
               }}
-              onMouseOver={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "var(--color-accent)"; }}
-              onMouseOut={(e) => { e.currentTarget.style.backgroundColor = "var(--color-accent)"; e.currentTarget.style.color = "#fff"; }}
+              onMouseOver={(e) => { if (!isLoading) { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "var(--color-accent)"; } }}
+              onMouseOut={(e) => { if (!isLoading) { e.currentTarget.style.backgroundColor = "var(--color-accent)"; e.currentTarget.style.color = "#fff"; } }}
             >
-              Autenticar
+              {isLoading ? "Autenticando..." : "Autenticar"}
             </button>
             <div style={{ textAlign: "center", marginTop: "1rem" }}>
               <a href="/es/auth/register" style={{ fontSize: "0.85rem", color: "var(--color-text-light)", textDecoration: "none", transition: "color 0.3s ease" }} onMouseOver={(e) => e.currentTarget.style.color = "var(--color-accent)"} onMouseOut={(e) => e.currentTarget.style.color = "var(--color-text-light)"}>
