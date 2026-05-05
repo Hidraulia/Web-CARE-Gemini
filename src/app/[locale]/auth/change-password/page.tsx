@@ -3,12 +3,14 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
+import { getSession } from "next-auth/react";
 import { logoutAction } from "../login/actions";
 
 export default function ChangePassword() {
   const router = useRouter();
-  const { data: session, status } = useSession();
+  
+  const [session, setSession] = useState<any>(null);
+  const [status, setStatus] = useState("loading");
   
   const [formData, setFormData] = useState({
     current_password: "",
@@ -21,10 +23,16 @@ export default function ChangePassword() {
   const [focusedField, setFocusedField] = useState<string | null>(null);
 
   useEffect(() => {
-    if (status === "unauthenticated") {
-      router.push("/es/auth/login");
-    }
-  }, [status, router]);
+    getSession().then((sess) => {
+      if (!sess) {
+        setStatus("unauthenticated");
+        router.push("/es/auth/login");
+      } else {
+        setSession(sess);
+        setStatus("authenticated");
+      }
+    });
+  }, [router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
