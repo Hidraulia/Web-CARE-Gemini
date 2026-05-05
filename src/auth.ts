@@ -9,6 +9,7 @@ declare module "next-auth" {
       role: "b2b" | "interiorista" | "b2c";
       empresa_nombre?: string | null;
       especialidad?: string | null;
+      requires_password_change?: boolean;
     } & DefaultSession["user"];
   }
 }
@@ -58,6 +59,7 @@ export const {
             role: user.role,
             empresa_nombre: user.empresa_nombre,
             especialidad: user.especialidad,
+            requires_password_change: user.requires_password_change
           } as any;
           
         } catch (error) {
@@ -74,6 +76,7 @@ export const {
         token.empresa_nombre = (user as any).empresa_nombre;
         token.especialidad = (user as any).especialidad;
         token.id = user.id;
+        token.requires_password_change = (user as any).requires_password_change;
       }
       return token;
     },
@@ -83,6 +86,7 @@ export const {
         session.user.id = token.id as string;
         session.user.empresa_nombre = token.empresa_nombre as string | null;
         session.user.especialidad = token.especialidad as string | null;
+        session.user.requires_password_change = token.requires_password_change as boolean;
       }
       return session;
     },

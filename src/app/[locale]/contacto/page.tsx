@@ -114,9 +114,9 @@ export default function Contacto() {
                 onBlur={() => setFocusedField(null)}
                 style={inputStyle("client_type")}
               >
-                <option value="b2c">Cliente Particular (Residencial)</option>
-                <option value="interiorista">Estudio de Arquitectura / Interiorismo</option>
-                <option value="b2b">Promotora / Constructora (B2B)</option>
+                <option value="b2c" style={{ background: "var(--color-bg)", color: "var(--color-text-main)" }}>Cliente Particular (Residencial)</option>
+                <option value="interiorista" style={{ background: "var(--color-bg)", color: "var(--color-text-main)" }}>Estudio de Arquitectura / Interiorismo</option>
+                <option value="b2b" style={{ background: "var(--color-bg)", color: "var(--color-text-main)" }}>Promotora / Constructora (B2B)</option>
               </select>
             </div>
 

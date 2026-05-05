@@ -38,6 +38,11 @@ export default auth((req) => {
     if (!isLoggedIn) {
        return NextResponse.redirect(new URL(`/${locale}/auth/login`, req.url));
     }
+    
+    // Check if the user is forced to change their password
+    if (req.auth?.user?.requires_password_change) {
+       return NextResponse.redirect(new URL(`/${locale}/auth/change-password`, req.url));
+    }
 
     // Advanced: Role-based route protection
     // Check if the user is trying to access a section they don't have access to

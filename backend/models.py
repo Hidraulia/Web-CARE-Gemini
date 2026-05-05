@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy import Column, Integer, String, DateTime, Boolean
 from database import Base
 import datetime
 
@@ -22,4 +22,5 @@ class User(Base):
     role = Column(String, index=True) # b2b, interiorista, b2c
     empresa_nombre = Column(String, nullable=True) # Solo B2B
     especialidad = Column(String, nullable=True)   # Solo Interioristas
+    must_change_password = Column(Boolean, default=True)
     created_at = Column(DateTime, default=datetime.datetime.utcnow)

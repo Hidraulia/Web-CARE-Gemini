@@ -144,6 +144,11 @@ export default function Login() {
             >
               Autenticar
             </button>
+            <div style={{ textAlign: "center", marginTop: "1rem" }}>
+              <a href="/es/auth/register" style={{ fontSize: "0.85rem", color: "var(--color-text-light)", textDecoration: "none", transition: "color 0.3s ease" }} onMouseOver={(e) => e.currentTarget.style.color = "var(--color-accent)"} onMouseOut={(e) => e.currentTarget.style.color = "var(--color-text-light)"}>
+                ¿No eres cliente aún? <span style={{ color: "var(--color-accent)" }}>Solicitar Alta / Crear Cuenta</span>
+              </a>
+            </div>
           </form>
         </motion.div>
       </div>

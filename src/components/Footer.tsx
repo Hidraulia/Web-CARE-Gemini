@@ -1,11 +1,14 @@
 import Link from 'next/link';
+import Logo from './Logo';
 
 export default function Footer({ locale }: { locale: string }) {
   return (
     <footer style={{ background: 'var(--color-bg-dark)', color: 'var(--color-text-light)', padding: '4rem 2rem', marginTop: 'auto', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '3rem' }}>
         <div>
-          <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', color: '#fff', marginBottom: '1rem' }}>CARE</h3>
+          <div style={{ marginBottom: '1rem' }}>
+            <Logo locale={locale} size="1.5rem" />
+          </div>
           <p style={{ fontSize: '0.9rem', lineHeight: 1.6, opacity: 0.8 }}>
             Diseño técnico, fabricación de lujo y ejecución integral para proyectos exigentes.
           </p>

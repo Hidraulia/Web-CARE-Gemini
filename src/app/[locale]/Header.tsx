@@ -6,6 +6,8 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { logoutAction } from "@/app/[locale]/auth/login/actions";
 
+import Logo from "@/components/Logo";
+
 export default function Header({ locale, isLoggedIn, privateLink }: { locale: string, isLoggedIn: boolean, privateLink: string }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -43,8 +45,8 @@ export default function Header({ locale, isLoggedIn, privateLink }: { locale: st
           borderBottom: scrolled ? '1px solid var(--color-border)' : '1px solid transparent'
         }}
       >
-        <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', fontWeight: 600, letterSpacing: '0.05em' }}>
-          <Link href={`/${locale}`} style={{ color: 'inherit', textDecoration: 'none' }}>CARE</Link>
+        <div>
+          <Logo locale={locale} size="1.5rem" />
         </div>
         
         {/* Desktop Nav */}
@@ -119,7 +121,7 @@ export default function Header({ locale, isLoggedIn, privateLink }: { locale: st
             }}
           >
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "3rem" }}>
-              <span style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', fontWeight: 600, letterSpacing: '0.05em' }}>CARE</span>
+              <Logo locale={locale} size="1.5rem" />
               <button onClick={() => setMobileMenuOpen(false)} style={{ background: "transparent", border: "none", color: "inherit", cursor: "pointer" }}>
                 <X size={32} />
               </button>

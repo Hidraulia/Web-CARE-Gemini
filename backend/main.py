@@ -80,8 +80,65 @@ def login(request: LoginRequest, db: Session = Depends(get_db)):
         "email": user.email,
         "role": user.role,
         "empresa_nombre": user.empresa_nombre,
-        "especialidad": user.especialidad
+        "especialidad": user.especialidad,
+        "requires_password_change": user.must_change_password
     }
+
+class RegisterRequest(BaseModel):
+    email: str
+    password: str
+    role: str
+    empresa_nombre: Optional[str] = None
+    especialidad: Optional[str] = None
+
+@app.post("/api/auth/register")
+def register(request: RegisterRequest, db: Session = Depends(get_db)):
+    existing_user = db.query(models.User).filter(models.User.email == request.email).first()
+    if existing_user:
+        raise HTTPException(status_code=400, detail="El email ya está registrado.")
+        
+    hashed_password = pwd_context.hash(request.password)
+    
+    new_user = models.User(
+        email=request.email,
+        password_hash=hashed_password,
+        role=request.role,
+        empresa_nombre=request.empresa_nombre,
+        especialidad=request.especialidad,
+        must_change_password=True
+    )
+    
+    db.add(new_user)
+    db.commit()
+    db.refresh(new_user)
+    return {"status": "success", "id": new_user.id}
+
+class ChangePasswordRequest(BaseModel):
+    email: str
+    current_password: str
+    new_password: str
+
+@app.post("/api/auth/change-password")
+def change_password(request: ChangePasswordRequest, db: Session = Depends(get_db)):
+    user = db.query(models.User).filter(models.User.email == request.email).first()
+    if not user:
+        raise HTTPException(status_code=401, detail="Usuario no encontrado.")
+        
+    # Verify current password
+    password_valid = False
+    try:
+        password_valid = pwd_context.verify(request.current_password, user.password_hash)
+    except Exception:
+        password_valid = (user.password_hash == request.current_password)
+        
+    if not password_valid:
+        raise HTTPException(status_code=401, detail="Contraseña actual incorrecta.")
+        
+    user.password_hash = pwd_context.hash(request.new_password)
+    user.must_change_password = False
+    db.commit()
+    
+    return {"status": "success"}
 
 @app.get("/api/health")
 def health_check():
