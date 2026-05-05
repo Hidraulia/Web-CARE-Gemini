@@ -39,32 +39,45 @@ export default auth((req) => {
       return NextResponse.redirect(new URL(`/${locale}/auth/login`, req.url));
     }
 
-    // Check if the user is forced to change their password
+    // A. Priority: Password Change Check
     if (req.auth?.user?.requires_password_change) {
       return NextResponse.redirect(new URL(`/${locale}/auth/change-password`, req.url));
     }
 
-    // Advanced: Role-based route protection
-    // Redirect base /privado to the correct role dashboard
-    if (pathname === `/${locale}/privado` || pathname === `/${locale}/privado/`) {
-      return NextResponse.redirect(new URL(`/${locale}/privado/${getRolePath(role)}`, req.url));
+    // B. Role Detection & Error Control
+    const targetRolePath = getRolePath(role);
+    if (!targetRolePath) {
+      // Role not detected: do not leave them in /privado
+      return NextResponse.redirect(new URL(`/${locale}/auth/login`, req.url));
     }
 
-    // Check if the user is trying to access a section they don't have access to
+    // C. Default Redirect from base /privado
+    if (pathname === `/${locale}/privado` || pathname === `/${locale}/privado/`) {
+      return NextResponse.redirect(new URL(`/${locale}/privado/${targetRolePath}`, req.url));
+    }
+
+    // D. Advanced: Role-based route protection
     if (pathname.includes('/privado/empresa') && role !== 'b2b') {
-      return NextResponse.redirect(new URL(`/${locale}/privado/${getRolePath(role)}`, req.url));
+      return NextResponse.redirect(new URL(`/${locale}/privado/${targetRolePath}`, req.url));
     }
     if (pathname.includes('/privado/interiorista') && role !== 'interiorista') {
-      return NextResponse.redirect(new URL(`/${locale}/privado/${getRolePath(role)}`, req.url));
+      return NextResponse.redirect(new URL(`/${locale}/privado/${targetRolePath}`, req.url));
     }
     if (pathname.includes('/privado/vip') && role !== 'b2c') {
-      return NextResponse.redirect(new URL(`/${locale}/privado/${getRolePath(role)}`, req.url));
+      return NextResponse.redirect(new URL(`/${locale}/privado/${targetRolePath}`, req.url));
     }
   }
 
   // 4. Redirect from login if already logged in
   if (pathname.includes('/auth/login') && isLoggedIn) {
-    return NextResponse.redirect(new URL(`/${locale}/privado/${getRolePath(role)}`, req.url));
+    if (req.auth?.user?.requires_password_change) {
+      return NextResponse.redirect(new URL(`/${locale}/auth/change-password`, req.url));
+    }
+    
+    const targetRolePath = getRolePath(role);
+    if (targetRolePath) {
+      return NextResponse.redirect(new URL(`/${locale}/privado/${targetRolePath}`, req.url));
+    }
   }
 
   return NextResponse.next();
