@@ -47,7 +47,7 @@ export default function Login() {
         let destination = "";
 
         if (role === "b2b" || role === "empresa") destination = "/es/privado/empresa";
-        else if (role === "b2c" || role === "vip") destination = "/es/privado/vip";
+        else if (role === "b2c" || role === "vip" || role === "residencial") destination = "/es/privado/vip";
         else if (role === "interiorista" || role === "pro" || role === "profesional") destination = "/es/privado/interiorista";
 
         if (destination) {

@@ -83,7 +83,8 @@ function getRolePath(role?: string) {
     case 'pro': 
     case 'profesional': return 'interiorista';
     case 'b2c': 
-    case 'vip': return 'vip';
+    case 'vip': 
+    case 'residencial': return 'vip';
     default: return '';
   }
 }
