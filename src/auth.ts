@@ -71,7 +71,7 @@ export const {
             role: user.role,
             empresa_nombre: user.empresa_nombre,
             especialidad: user.especialidad,
-            must_change_password: user.requires_password_change
+            must_change_password: user.must_change_password
           } as any;
           
         } catch (error) {

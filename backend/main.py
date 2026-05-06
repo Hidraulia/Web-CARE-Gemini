@@ -81,7 +81,7 @@ def login(request: LoginRequest, db: Session = Depends(get_db)):
         "role": user.role,
         "empresa_nombre": user.empresa_nombre,
         "especialidad": user.especialidad,
-        "requires_password_change": user.must_change_password
+        "must_change_password": user.must_change_password
     }
 
 class RegisterRequest(BaseModel):

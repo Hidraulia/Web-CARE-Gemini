@@ -4,11 +4,24 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
+import { useSession } from "next-auth/react";
 import { logoutAction } from "@/app/[locale]/auth/login/actions";
 
 import Logo from "@/components/Logo";
 
-export default function Header({ locale, isLoggedIn, privateLink }: { locale: string, isLoggedIn: boolean, privateLink: string }) {
+export default function Header({ locale }: { locale: string }) {
+  const { data: session, status } = useSession();
+  const isLoggedIn = status === "authenticated";
+  
+  let privateLink = `/${locale}/auth/login`;
+  if (isLoggedIn) {
+    const role = session?.user?.role;
+    if (role === "b2b") privateLink = `/${locale}/privado/empresa`;
+    else if (role === "b2c" || role === "vip") privateLink = `/${locale}/privado/vip`;
+    else if (role === "interiorista" || role === "pro") privateLink = `/${locale}/privado/interiorista`;
+    else privateLink = `/${locale}/privado`;
+  }
+
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
