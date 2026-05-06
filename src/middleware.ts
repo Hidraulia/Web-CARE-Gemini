@@ -75,10 +75,13 @@ export default auth((req) => {
 });
 
 function getRolePath(role?: string) {
-  switch (role) {
-    case 'b2b': return 'empresa';
+  const r = (role || '').toLowerCase();
+  switch (r) {
+    case 'b2b': 
+    case 'empresa': return 'empresa';
     case 'interiorista': 
-    case 'pro': return 'interiorista';
+    case 'pro': 
+    case 'profesional': return 'interiorista';
     case 'b2c': 
     case 'vip': return 'vip';
     default: return '';

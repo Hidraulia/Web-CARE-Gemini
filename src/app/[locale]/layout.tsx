@@ -14,6 +14,20 @@ export function generateStaticParams() {
   return [{ locale: 'es' }, { locale: 'en' }];
 }
 
+export function getRolePath(role?: string) {
+  const r = (role || '').toLowerCase();
+  switch (r) {
+    case 'b2b': 
+    case 'empresa': return 'empresa';
+    case 'interiorista':
+    case 'pro': 
+    case 'profesional': return 'interiorista';
+    case 'b2c':
+    case 'vip': return 'vip';
+    default: return '';
+  }
+}
+
 export default function RootLayout({
   children,
   params: { locale }

@@ -43,11 +43,12 @@ export default function Login() {
 
         // 2. Si ya cambió la contraseña, calculamos su carpeta por rol
         const role = (user?.role || "").toLowerCase();
+        console.log("ROL DETECTADO:", role);
         let destination = "";
 
-        if (role === "b2b") destination = "/es/privado/empresa";
+        if (role === "b2b" || role === "empresa") destination = "/es/privado/empresa";
         else if (role === "b2c" || role === "vip") destination = "/es/privado/vip";
-        else if (role === "interiorista" || role === "pro") destination = "/es/privado/interiorista";
+        else if (role === "interiorista" || role === "pro" || role === "profesional") destination = "/es/privado/interiorista";
 
         if (destination) {
           router.push(destination);
