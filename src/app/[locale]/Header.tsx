@@ -15,7 +15,7 @@ export default function Header({ locale }: { locale: string }) {
   
   let privateLink = `/${locale}/auth/login`;
   if (isLoggedIn) {
-    const role = session?.user?.role;
+    const role = (session?.user?.role || "").toLowerCase();
     if (role === "b2b") privateLink = `/${locale}/privado/empresa`;
     else if (role === "b2c" || role === "vip") privateLink = `/${locale}/privado/vip`;
     else if (role === "interiorista" || role === "pro") privateLink = `/${locale}/privado/interiorista`;

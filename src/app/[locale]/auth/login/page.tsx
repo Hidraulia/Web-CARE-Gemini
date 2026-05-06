@@ -42,14 +42,19 @@ export default function Login() {
         }
 
         // 2. Si ya cambió la contraseña, calculamos su carpeta por rol
-        const role = user?.role;
-        let destination = "/es/privado";
+        const role = (user?.role || "").toLowerCase();
+        let destination = "";
 
         if (role === "b2b") destination = "/es/privado/empresa";
         else if (role === "b2c" || role === "vip") destination = "/es/privado/vip";
         else if (role === "interiorista" || role === "pro") destination = "/es/privado/interiorista";
 
-        router.push(destination);
+        if (destination) {
+          router.push(destination);
+        } else {
+          setError("Perfil no configurado. Contacte a soporte.");
+          setIsLoading(false);
+        }
       } else {
         setError("Error de conexión con el servidor");
         setIsLoading(false);

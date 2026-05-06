@@ -83,22 +83,30 @@ export const {
   ],
   callbacks: {
     jwt({ token, user }) {
-      if (user) {
-        token.role = (user as any).role;
-        token.empresa_nombre = (user as any).empresa_nombre;
-        token.especialidad = (user as any).especialidad;
-        token.id = user.id;
-        token.must_change_password = (user as any).must_change_password;
+      try {
+        if (user) {
+          token.role = ((user as any).role || "").toLowerCase();
+          token.empresa_nombre = (user as any).empresa_nombre || null;
+          token.especialidad = (user as any).especialidad || null;
+          token.id = user.id;
+          token.must_change_password = (user as any).must_change_password || false;
+        }
+      } catch (err) {
+        console.error("JWT Error:", err);
       }
       return token;
     },
     session({ session, token }) {
-      if (token && session.user) {
-        session.user.id = token.id as string;
-        session.user.role = token.role as string;
-        session.user.must_change_password = token.must_change_password as boolean;
-        session.user.empresa_nombre = token.empresa_nombre as string | null;
-        session.user.especialidad = token.especialidad as string | null;
+      try {
+        if (token && session.user) {
+          session.user.id = token.id as string;
+          session.user.role = token.role as string;
+          session.user.must_change_password = token.must_change_password as boolean;
+          session.user.empresa_nombre = (token.empresa_nombre as string) || null;
+          session.user.especialidad = (token.especialidad as string) || null;
+        }
+      } catch (err) {
+        console.error("Session Error:", err);
       }
       return session;
     },
