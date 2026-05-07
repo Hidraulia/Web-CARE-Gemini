@@ -26,11 +26,11 @@ export default async function VIPDashboard() {
   return (
     <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
       <div style={{ marginBottom: "3rem" }}>
-        <h1 style={{ fontFamily: "var(--font-serif)", fontSize: "2.5rem", color: "var(--color-text-main)", marginBottom: "0.5rem" }}>
+        <h1 style={{ fontFamily: "var(--font-serif)", fontSize: "2.5rem", color: "#222222", marginBottom: "0.5rem" }}>
           Mi Residencia Exclusiva
         </h1>
-        <p style={{ color: "var(--color-text-light)", fontSize: "1.05rem" }}>
-          Bienvenido, {user?.email}
+        <p style={{ color: "#666666", fontSize: "1.05rem" }}>
+          Bienvenido, {user?.email || "Cliente VIP"}
         </p>
       </div>
 

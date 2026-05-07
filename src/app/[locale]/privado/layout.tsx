@@ -8,7 +8,7 @@ export default function PrivadoLayout({
   params: { locale: string };
 }>) {
   return (
-    <div style={{ display: "flex", minHeight: "100vh", background: "var(--color-bg)", color: "var(--color-text-main)" }}>
+    <div style={{ display: "flex", minHeight: "100vh", background: "#F4F4F4", color: "#222222" }}>
       {/* Sidebar acts as the global navigation for this section */}
       <Sidebar locale={locale} />
       

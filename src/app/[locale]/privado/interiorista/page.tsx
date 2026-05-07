@@ -26,10 +26,10 @@ export default async function InterioristaDashboard() {
   return (
     <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
       <div style={{ marginBottom: "3rem" }}>
-        <h1 style={{ fontFamily: "var(--font-serif)", fontSize: "2.5rem", color: "var(--color-text-main)", marginBottom: "0.5rem" }}>
+        <h1 style={{ fontFamily: "var(--font-serif)", fontSize: "2.5rem", color: "#222222", marginBottom: "0.5rem" }}>
           Portal para Profesionales
         </h1>
-        <p style={{ color: "var(--color-text-light)", fontSize: "1.05rem" }}>
+        <p style={{ color: "#666666", fontSize: "1.05rem" }}>
           {user?.especialidad || "Estudio de Interiorismo / Arquitectura"}
         </p>
       </div>

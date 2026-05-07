@@ -40,7 +40,7 @@ export default function Sidebar({ locale }: { locale: string }) {
           const isDashboard = item.name === "Dashboard";
           const isActive = isDashboard 
             ? pathname === item.href 
-            : pathname.includes(item.href);
+            : pathname?.includes(item.href);
 
           return (
             <Link key={item.name} href={item.href} style={{
