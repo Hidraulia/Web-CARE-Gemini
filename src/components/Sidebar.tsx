@@ -22,7 +22,7 @@ export default function Sidebar({ locale }: { locale: string }) {
       position: "fixed",
       top: 0,
       left: 0,
-      background: "#1A1A1A",
+      background: "#000000",
       color: "#F9F9F9",
       display: "flex",
       flexDirection: "column",

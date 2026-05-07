@@ -16,7 +16,7 @@ export default async function InterioristaDashboard() {
     borderRadius: "var(--card-radius)",
     padding: "1.5rem",
     boxShadow: "var(--card-shadow)",
-    border: "1px solid rgba(255,255,255,0.1)",
+    border: "1px solid var(--color-accent)",
     display: "flex",
     flexDirection: "column" as const,
     gap: "1rem",

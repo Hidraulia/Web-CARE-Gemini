@@ -32,25 +32,28 @@ export default function Login() {
         setError("Email o contraseña incorrectos.");
         setIsLoading(false);
       } else if (res?.ok) {
+        // 1. Obtenemos la sesión con seguridad
         const { getSession } = await import("next-auth/react");
         const session = await getSession();
-        const user = session?.user;
+        const userRole = session?.user?.role;
 
-        // Mapeo directo y estricto desde Supabase
-        const role = (user?.role || "").toLowerCase();
-        console.log("ROL DETECTADO:", role);
-        let destination = "";
-
-        if (role === "b2b") destination = "/es/privado/empresa";
-        else if (role === "residencial") destination = "/es/privado/vip";
-        else if (role === "profesional") destination = "/es/privado/interiorista";
-
-        if (destination) {
-          router.push(destination);
-        } else {
-          setError("Perfil no configurado. Contacte a soporte.");
+        if (!userRole) {
+          console.error("No se detectó rol en la sesión");
+          setError("Error de configuración de perfil.");
           setIsLoading(false);
+          return;
         }
+
+        // 2. Mapeo exacto de roles de Supabase a carpetas
+        let destination = "/es/privado";
+        const role = userRole.toLowerCase();
+
+        if (role === 'b2b') destination = "/es/privado/empresa";
+        else if (role === 'residencial') destination = "/es/privado/vip";
+        else if (role === 'profesional') destination = "/es/privado/interiorista";
+
+        // 3. Redirección limpia
+        window.location.href = destination; 
       } else {
         setError("Error de conexión con el servidor");
         setIsLoading(false);
