@@ -4,13 +4,20 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
+import { usePathname } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
 
 import Logo from "@/components/Logo";
 
 export default function Header({ locale }: { locale: string }) {
   const { data: session, status } = useSession();
+  const pathname = usePathname();
   const isLoggedIn = status === "authenticated";
+  
+  // Ocultar Header global en el área privada para ceder protagonismo a la Sidebar
+  if (pathname.includes("/privado")) {
+    return null;
+  }
   
   let privateLink = `/${locale}/auth/login`;
   if (isLoggedIn) {
