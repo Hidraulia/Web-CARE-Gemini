@@ -53,15 +53,12 @@ export default function Header({ locale }: { locale: string }) {
           top: 0, 
           width: '100%', 
           zIndex: 100, 
-          padding: scrolled ? '1rem 2rem' : '1.5rem 2rem', 
+          padding: '1.5rem 2rem', 
           display: 'flex', 
           justifyContent: 'space-between', 
           alignItems: 'center',
-          transition: 'all 0.3s ease',
-          background: scrolled ? 'var(--color-glass)' : 'transparent',
-          backdropFilter: scrolled ? 'blur(10px)' : 'none',
-          WebkitBackdropFilter: scrolled ? 'blur(10px)' : 'none',
-          borderBottom: scrolled ? '1px solid var(--color-border)' : '1px solid transparent'
+          background: '#000000',
+          borderBottom: '1px solid rgba(255,255,255,0.1)'
         }}
       >
         <div>
@@ -95,6 +92,13 @@ export default function Header({ locale }: { locale: string }) {
             .desktop-nav { display: flex !important; }
             .mobile-toggle { display: none !important; }
           }
+          .hover-underline {
+            color: #FFFFFF;
+            transition: color 0.3s ease;
+          }
+          .hover-underline:hover {
+            color: var(--color-accent) !important;
+          }
           .hover-underline::after {
             content: '';
             position: absolute;
@@ -103,7 +107,7 @@ export default function Header({ locale }: { locale: string }) {
             height: 1px;
             bottom: 0;
             left: 0;
-            background-color: currentColor;
+            background-color: var(--color-accent);
             transform-origin: bottom right;
             transition: transform 0.25s ease-out;
           }

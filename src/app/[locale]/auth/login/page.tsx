@@ -36,19 +36,14 @@ export default function Login() {
         const session = await getSession();
         const user = session?.user;
 
-        // 1. Prioridad absoluta: Cambio de contraseña obligatorio
-        if (user?.must_change_password) {
-          return router.push("/es/auth/change-password");
-        }
-
-        // 2. Si ya cambió la contraseña, calculamos su carpeta por rol
+        // Mapeo directo y estricto desde Supabase
         const role = (user?.role || "").toLowerCase();
         console.log("ROL DETECTADO:", role);
         let destination = "";
 
-        if (role === "b2b" || role === "empresa") destination = "/es/privado/empresa";
-        else if (role === "b2c" || role === "vip" || role === "residencial") destination = "/es/privado/vip";
-        else if (role === "interiorista" || role === "pro" || role === "profesional") destination = "/es/privado/interiorista";
+        if (role === "b2b") destination = "/es/privado/empresa";
+        else if (role === "residencial") destination = "/es/privado/vip";
+        else if (role === "profesional") destination = "/es/privado/interiorista";
 
         if (destination) {
           router.push(destination);
