@@ -4,8 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
-import { useSession } from "next-auth/react";
-import { logoutAction } from "@/app/[locale]/auth/login/actions";
+import { useSession, signOut } from "next-auth/react";
 
 import Logo from "@/components/Logo";
 
@@ -73,11 +72,9 @@ export default function Header({ locale }: { locale: string }) {
             {isLoggedIn ? "Mi Cuenta" : "Área Privada"}
           </Link>
           {isLoggedIn && (
-             <form action={logoutAction}>
-               <button type="submit" style={{ background: 'transparent', border: 'none', cursor: 'pointer', fontSize: '0.7rem', color: 'var(--color-text-light)', borderLeft: '1px solid rgba(255,255,255,0.1)', paddingLeft: '1rem', textTransform: "uppercase", letterSpacing: "0.1em" }}>
-                 SALIR
-               </button>
-             </form>
+             <button onClick={() => signOut({ callbackUrl: '/', redirect: true })} style={{ background: 'transparent', border: 'none', cursor: 'pointer', fontSize: '0.7rem', color: 'var(--color-text-light)', borderLeft: '1px solid rgba(255,255,255,0.1)', paddingLeft: '1rem', textTransform: "uppercase", letterSpacing: "0.1em" }}>
+               SALIR
+             </button>
           )}
         </nav>
 
@@ -150,11 +147,9 @@ export default function Header({ locale }: { locale: string }) {
                 {isLoggedIn ? "Mi Cuenta" : "Área Privada"}
               </Link>
               {isLoggedIn && (
-                <form action={logoutAction}>
-                  <button type="submit" style={{ background: 'transparent', border: 'none', cursor: 'pointer', fontSize: '1rem', color: 'var(--color-text-light)', textAlign: "left", padding: 0, textTransform: "uppercase", letterSpacing: "0.1em" }}>
-                    Cerrar Sesión
-                  </button>
-                </form>
+                <button onClick={() => signOut({ callbackUrl: '/', redirect: true })} style={{ background: 'transparent', border: 'none', cursor: 'pointer', fontSize: '1rem', color: 'var(--color-text-light)', textAlign: "left", padding: 0, textTransform: "uppercase", letterSpacing: "0.1em" }}>
+                  Cerrar Sesión
+                </button>
               )}
             </nav>
           </motion.div>
