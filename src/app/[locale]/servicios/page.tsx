@@ -48,13 +48,13 @@ export default function Servicios({ params: { locale } }: { params: { locale: st
   ];
 
   return (
-    <div style={{ background: "#F9F9F9", minHeight: "100vh" }}>
-      <div style={{ padding: "6rem 2rem", maxWidth: "1200px", margin: "0 auto", color: "#222222" }}>
+    <div style={{ background: "#000000", minHeight: "100vh" }}>
+      <div style={{ padding: "6rem 2rem", maxWidth: "1200px", margin: "0 auto", color: "#FFFFFF" }}>
         <motion.div initial="hidden" animate="visible" variants={staggerContainer} style={{ textAlign: "center", marginBottom: "4rem" }}>
-          <motion.h1 variants={fadeIn} style={{ fontFamily: "var(--font-serif)", fontSize: "3.5rem", marginBottom: "1rem", color: "#222222" }}>
+          <motion.h1 variants={fadeIn} style={{ fontFamily: "var(--font-serif)", fontSize: "3.5rem", marginBottom: "1rem", color: "#FFFFFF" }}>
             Nuestros Servicios
           </motion.h1>
-          <motion.p variants={fadeIn} style={{ fontSize: "1.2rem", color: "#666666", maxWidth: "800px", margin: "0 auto", lineHeight: 1.6 }}>
+          <motion.p variants={fadeIn} style={{ fontSize: "1.2rem", color: "var(--color-text-light)", maxWidth: "800px", margin: "0 auto", lineHeight: 1.6 }}>
             Directamente de fábrica, sin distribuidores, ofrecemos una amplia gama de diseños y acabados ajustándonos a las necesidades técnicas con la mejor relación calidad-precio.
           </motion.p>
         </motion.div>
@@ -67,13 +67,13 @@ export default function Servicios({ params: { locale } }: { params: { locale: st
           style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "2rem" }}
         >
           {services.map((srv, index) => (
-            <motion.div key={index} variants={fadeIn} style={{ background: "#FFFFFF", border: "1px solid var(--color-accent)", borderRadius: "8px", overflow: "hidden", display: "flex", flexDirection: "column", boxShadow: "0 4px 20px rgba(0,0,0,0.05)" }}>
+            <motion.div key={index} variants={fadeIn} style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)", borderRadius: "8px", overflow: "hidden", display: "flex", flexDirection: "column" }}>
               <div style={{ height: "200px", position: "relative", overflow: "hidden" }} className="imgWrapper">
                 <img src={srv.img} alt={srv.title} loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.5s ease" }} className="hoverZoom" />
               </div>
               <div style={{ padding: "2rem", flexGrow: 1, display: "flex", flexDirection: "column" }}>
-                <h3 style={{ fontSize: "1.5rem", marginBottom: "1rem", color: "#222222" }}>{srv.title}</h3>
-                <p style={{ color: "#666666", fontSize: "0.95rem", lineHeight: 1.5, marginBottom: "2rem", flexGrow: 1 }}>{srv.desc}</p>
+                <h3 style={{ fontSize: "1.5rem", marginBottom: "1rem", color: "#FFFFFF" }}>{srv.title}</h3>
+                <p style={{ color: "var(--color-text-light)", fontSize: "0.95rem", lineHeight: 1.5, marginBottom: "2rem", flexGrow: 1 }}>{srv.desc}</p>
                 <Link href={`/${locale}/servicios/${srv.url}`} style={{ color: "var(--color-accent)", textTransform: "uppercase", fontSize: "0.85rem", letterSpacing: "0.1em", fontWeight: 500, textDecoration: "none" }}>
                   Ver Detalles →
                 </Link>

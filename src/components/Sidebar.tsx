@@ -12,7 +12,6 @@ function SidebarContent({ locale }: { locale: string }) {
   const currentTab = searchParams.get("tab") || "dashboard";
 
   const navItems = [
-    { name: "Ver Sitio Web", href: `/${locale}`, tab: "", icon: Globe },
     { name: "Dashboard", href: "?tab=dashboard", tab: "dashboard", icon: LayoutDashboard },
     { name: "Mis Proyectos", href: "?tab=proyectos", tab: "proyectos", icon: FolderKanban },
     { name: "Presupuestos", href: "?tab=presupuestos", tab: "presupuestos", icon: FileText },
@@ -34,15 +33,22 @@ function SidebarContent({ locale }: { locale: string }) {
       zIndex: 1000
     }}>
       <div style={{ padding: "2rem", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
-        <Link href={`/${locale}`} style={{ textDecoration: "none" }}>
+        <button onClick={() => window.location.href = `/${locale}`} style={{ textDecoration: "none", background: "transparent", border: "none", cursor: "pointer", textAlign: "left", padding: 0 }}>
           <h2 style={{ fontFamily: "var(--font-serif)", fontSize: "1.8rem", color: "var(--color-accent)", margin: 0, letterSpacing: "0.05em" }}>CARE</h2>
           <p style={{ fontSize: "0.75rem", textTransform: "uppercase", letterSpacing: "0.1em", color: "#F9F9F9", opacity: 0.5, marginTop: "0.25rem", margin: 0 }}>Portal Colaborativo</p>
-        </Link>
+        </button>
       </div>
 
       <nav style={{ flex: 1, padding: "2rem 1rem", display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+        <button onClick={() => window.location.href = `/${locale}`} style={{
+          display: "flex", alignItems: "center", gap: "1rem", padding: "0.85rem 1rem", borderRadius: "8px", color: "rgba(255,255,255,0.7)", background: "transparent", border: "none", fontSize: "0.95rem", transition: "all 0.2s ease", cursor: "pointer", textAlign: "left"
+        }}>
+          <Globe size={18} strokeWidth={2} />
+          Ver Sitio Web
+        </button>
+
         {navItems.map((item) => {
-          const isActive = item.tab ? currentTab === item.tab : false;
+          const isActive = currentTab === item.tab;
 
           return (
             <Link key={item.name} href={item.href} style={{
