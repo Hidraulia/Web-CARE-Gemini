@@ -1,15 +1,32 @@
-import { auth } from "@/auth";
-import { redirect } from "next/navigation";
-import { Briefcase, FileCheck, CheckCircle2 } from "lucide-react";
+"use client";
 
-export default async function EmpresaDashboard() {
-  const session = await auth();
-  const user = session?.user;
+import { useSession } from "next-auth/react";
+import { useSearchParams, useRouter } from "next/navigation";
+import { Briefcase, FileCheck, CheckCircle2, Download, Send, MessageSquare } from "lucide-react";
+import { useEffect } from "react";
 
-  const role = (user?.role || "").toLowerCase();
-  if (role !== "b2b") {
-    redirect("/es/privado");
+export default function EmpresaDashboard() {
+  const { data: session, status } = useSession();
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const tab = searchParams.get("tab") || "dashboard";
+
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      router.push("/es/auth/login");
+    } else if (status === "authenticated") {
+      const role = (session?.user?.role || "").toLowerCase();
+      if (role !== "b2b") {
+        router.push("/es/privado");
+      }
+    }
+  }, [status, session, router]);
+
+  if (status === "loading" || status === "unauthenticated") {
+    return <div style={{ padding: "2rem", color: "#222" }}>Cargando su panel seguro...</div>;
   }
+
+  const user = session?.user;
 
   const cardStyle = {
     background: "#FFFFFF",
@@ -23,8 +40,8 @@ export default async function EmpresaDashboard() {
     color: "#222222"
   };
 
-  return (
-    <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+  const renderDashboard = () => (
+    <>
       <div style={{ marginBottom: "3rem" }}>
         <h1 style={{ fontFamily: "var(--font-serif)", fontSize: "2.5rem", color: "#222222", marginBottom: "0.5rem" }}>
           Bienvenido, {user?.empresa_nombre || "Empresa Colaboradora"}
@@ -91,6 +108,132 @@ export default async function EmpresaDashboard() {
           <span style={{ fontSize: "0.85rem", color: "#666666" }}>Ayer</span>
         </div>
       </section>
+    </>
+  );
+
+  const renderProyectos = () => (
+    <>
+      <div style={{ marginBottom: "3rem" }}>
+        <h1 style={{ fontFamily: "var(--font-serif)", fontSize: "2.5rem", color: "#222222", marginBottom: "0.5rem" }}>Mis Proyectos</h1>
+        <p style={{ color: "#666666", fontSize: "1.05rem" }}>Listado de promociones y estado logístico.</p>
+      </div>
+      <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+        <div style={cardStyle}>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <div>
+              <h3 style={{ fontSize: "1.2rem", fontWeight: 600 }}>Promoción "Vistas del Mar"</h3>
+              <p style={{ color: "#666666", marginTop: "0.25rem" }}>ID: PRJ-40291 | 12 Viviendas</p>
+            </div>
+            <span style={{ background: "rgba(189,165,123,0.1)", color: "var(--color-accent)", padding: "0.5rem 1rem", borderRadius: "20px", fontSize: "0.85rem", fontWeight: 500, height: "fit-content" }}>En Tránsito</span>
+          </div>
+          <div style={{ marginTop: "1rem", padding: "1rem", background: "rgba(0,0,0,0.02)", borderRadius: "8px" }}>
+             <p style={{ fontSize: "0.9rem", color: "#666666" }}>Llegada estimada a obra: 15 de Noviembre.</p>
+          </div>
+        </div>
+        <div style={cardStyle}>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <div>
+              <h3 style={{ fontSize: "1.2rem", fontWeight: 600 }}>Hotel Boutique Centro</h3>
+              <p style={{ color: "#666666", marginTop: "0.25rem" }}>ID: PRJ-40305 | 45 Habitaciones</p>
+            </div>
+            <span style={{ background: "rgba(0,0,0,0.05)", color: "#555", padding: "0.5rem 1rem", borderRadius: "20px", fontSize: "0.85rem", fontWeight: 500, height: "fit-content" }}>Fase de Ensamblaje</span>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+
+  const renderPresupuestos = () => (
+    <>
+      <div style={{ marginBottom: "3rem" }}>
+        <h1 style={{ fontFamily: "var(--font-serif)", fontSize: "2.5rem", color: "#222222", marginBottom: "0.5rem" }}>Historial de Facturación</h1>
+        <p style={{ color: "#666666", fontSize: "1.05rem" }}>Presupuestos emitidos y facturas consolidadas.</p>
+      </div>
+      <div style={cardStyle}>
+         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "1rem 0", borderBottom: "1px solid rgba(0,0,0,0.05)" }}>
+           <div>
+             <h4 style={{ fontWeight: 600 }}>Factura F-2026-089</h4>
+             <p style={{ fontSize: "0.85rem", color: "#666666" }}>Emitida: 01 Nov 2026</p>
+           </div>
+           <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+             <span style={{ fontWeight: 600 }}>€12,450.00</span>
+             <button style={{ background: "transparent", border: "1px solid var(--color-accent)", color: "var(--color-accent)", padding: "0.5rem", borderRadius: "4px", cursor: "pointer" }}><Download size={16} /></button>
+           </div>
+         </div>
+         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "1rem 0" }}>
+           <div>
+             <h4 style={{ fontWeight: 600 }}>Cotización C-2026-112</h4>
+             <p style={{ fontSize: "0.85rem", color: "#666666" }}>Pendiente de Aprobación</p>
+           </div>
+           <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+             <span style={{ fontWeight: 600 }}>€45,200.00</span>
+             <button style={{ background: "transparent", border: "1px solid var(--color-accent)", color: "var(--color-accent)", padding: "0.5rem", borderRadius: "4px", cursor: "pointer" }}><Download size={16} /></button>
+           </div>
+         </div>
+      </div>
+    </>
+  );
+
+  const renderIA = () => (
+    <>
+      <div style={{ marginBottom: "2rem" }}>
+        <h1 style={{ fontFamily: "var(--font-serif)", fontSize: "2.5rem", color: "#222222", marginBottom: "0.5rem" }}>Consultor Técnico IA</h1>
+        <p style={{ color: "#666666", fontSize: "1.05rem" }}>Resolución instantánea de dudas sobre optimización técnica y materiales.</p>
+      </div>
+      <div style={{ ...cardStyle, height: "500px", justifyContent: "space-between", padding: 0, overflow: "hidden" }}>
+        <div style={{ padding: "2rem", overflowY: "auto", display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+          <div style={{ display: "flex", gap: "1rem", maxWidth: "80%" }}>
+            <div style={{ width: "40px", height: "40px", borderRadius: "50%", background: "var(--color-accent)", display: "flex", alignItems: "center", justifyContent: "center", color: "#222222", flexShrink: 0 }}>
+              <Bot size={20} />
+            </div>
+            <div style={{ background: "rgba(0,0,0,0.05)", padding: "1rem 1.5rem", borderRadius: "0 16px 16px 16px", color: "#222222", fontSize: "0.95rem", lineHeight: 1.5 }}>
+              Hola, soy tu consultor técnico de CARE. ¿En qué puedo ayudarte con tu proyecto hoy?
+            </div>
+          </div>
+        </div>
+        <div style={{ padding: "1.5rem", borderTop: "1px solid rgba(0,0,0,0.05)", background: "#FFFFFF", display: "flex", gap: "1rem" }}>
+          <input type="text" placeholder="Escribe tu consulta técnica..." style={{ flex: 1, padding: "1rem", borderRadius: "8px", border: "1px solid rgba(0,0,0,0.1)", outline: "none", fontSize: "0.95rem" }} />
+          <button style={{ background: "var(--color-accent)", color: "#222222", border: "none", padding: "0 1.5rem", borderRadius: "8px", cursor: "pointer", fontWeight: 600 }}>
+            <Send size={18} />
+          </button>
+        </div>
+      </div>
+    </>
+  );
+
+  const renderSoporte = () => (
+    <>
+      <div style={{ marginBottom: "3rem" }}>
+        <h1 style={{ fontFamily: "var(--font-serif)", fontSize: "2.5rem", color: "#222222", marginBottom: "0.5rem" }}>Soporte Corporativo</h1>
+        <p style={{ color: "#666666", fontSize: "1.05rem" }}>Contacta directamente con tu Account Manager asignado.</p>
+      </div>
+      <form style={{ ...cardStyle, maxWidth: "600px" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+          <label style={{ fontSize: "0.85rem", fontWeight: 600, color: "#666666" }}>Asunto</label>
+          <input type="text" placeholder="Ej: Retraso en entrega" style={{ padding: "0.85rem", borderRadius: "6px", border: "1px solid rgba(0,0,0,0.1)", fontSize: "0.95rem", outline: "none" }} />
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+          <label style={{ fontSize: "0.85rem", fontWeight: 600, color: "#666666" }}>Referencia de Proyecto (Opcional)</label>
+          <input type="text" placeholder="Ej: PRJ-40291" style={{ padding: "0.85rem", borderRadius: "6px", border: "1px solid rgba(0,0,0,0.1)", fontSize: "0.95rem", outline: "none" }} />
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+          <label style={{ fontSize: "0.85rem", fontWeight: 600, color: "#666666" }}>Mensaje</label>
+          <textarea rows={5} placeholder="Describe tu consulta..." style={{ padding: "0.85rem", borderRadius: "6px", border: "1px solid rgba(0,0,0,0.1)", fontSize: "0.95rem", outline: "none", resize: "vertical" }} />
+        </div>
+        <button type="button" style={{ background: "var(--color-accent)", color: "#222222", border: "none", padding: "1rem", borderRadius: "6px", cursor: "pointer", fontWeight: 600, fontSize: "1rem", marginTop: "1rem", display: "flex", justifyContent: "center", gap: "0.5rem", alignItems: "center" }}>
+          <MessageSquare size={18} /> Enviar Mensaje
+        </button>
+      </form>
+    </>
+  );
+
+  return (
+    <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+      {tab === "dashboard" && renderDashboard()}
+      {tab === "proyectos" && renderProyectos()}
+      {tab === "presupuestos" && renderPresupuestos()}
+      {tab === "ia" && renderIA()}
+      {tab === "soporte" && renderSoporte()}
     </div>
   );
 }

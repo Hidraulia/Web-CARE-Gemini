@@ -1,18 +1,21 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { LayoutDashboard, FolderKanban, FileText, Bot, Settings, LogOut } from "lucide-react";
 import { signOut } from "next-auth/react";
+import { Suspense } from "react";
 
-export default function Sidebar({ locale }: { locale: string }) {
+function SidebarContent({ locale }: { locale: string }) {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const currentTab = searchParams.get("tab") || "dashboard";
 
   const navItems = [
-    { name: "Dashboard", href: `/${locale}/privado`, icon: LayoutDashboard },
-    { name: "Mis Proyectos", href: `/${locale}/privado/proyectos`, icon: FolderKanban },
-    { name: "Presupuestos", href: `/${locale}/privado/presupuestos`, icon: FileText },
-    { name: "Consultor IA", href: `/${locale}/privado/consultor-ia`, icon: Bot },
+    { name: "Dashboard", href: "?tab=dashboard", tab: "dashboard", icon: LayoutDashboard },
+    { name: "Mis Proyectos", href: "?tab=proyectos", tab: "proyectos", icon: FolderKanban },
+    { name: "Presupuestos", href: "?tab=presupuestos", tab: "presupuestos", icon: FileText },
+    { name: "Consultor IA", href: "?tab=ia", tab: "ia", icon: Bot },
   ];
 
   return (
@@ -36,11 +39,7 @@ export default function Sidebar({ locale }: { locale: string }) {
 
       <nav style={{ flex: 1, padding: "2rem 1rem", display: "flex", flexDirection: "column", gap: "0.5rem" }}>
         {navItems.map((item) => {
-          // A simple check to highlight Dashboard ONLY if exact, and others if included
-          const isDashboard = item.name === "Dashboard";
-          const isActive = isDashboard 
-            ? pathname === item.href 
-            : pathname?.includes(item.href);
+          const isActive = currentTab === item.tab;
 
           return (
             <Link key={item.name} href={item.href} style={{
@@ -64,17 +63,25 @@ export default function Sidebar({ locale }: { locale: string }) {
       </nav>
 
       <div style={{ padding: "1.5rem 1rem", borderTop: "1px solid rgba(255,255,255,0.05)", display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-        <Link href={`/${locale}/privado/ajustes`} style={{
-          display: "flex", alignItems: "center", gap: "1rem", padding: "0.85rem 1rem", borderRadius: "8px", color: "rgba(255,255,255,0.7)", textDecoration: "none", fontSize: "0.95rem", transition: "all 0.2s ease"
+        <Link href="?tab=soporte" style={{
+          display: "flex", alignItems: "center", gap: "1rem", padding: "0.85rem 1rem", borderRadius: "8px", color: currentTab === "soporte" ? "var(--color-accent)" : "rgba(255,255,255,0.7)", background: currentTab === "soporte" ? "rgba(189,165,123,0.1)" : "transparent", textDecoration: "none", fontSize: "0.95rem", transition: "all 0.2s ease"
         }}>
           <Settings size={18} /> Soporte / Ajustes
         </Link>
         <button onClick={() => signOut({ callbackUrl: '/', redirect: true })} style={{
-          display: "flex", alignItems: "center", gap: "1rem", padding: "0.85rem 1rem", borderRadius: "8px", color: "#ff6b6b", background: "rgba(255, 107, 107, 0.05)", border: "1px solid transparent", width: "100%", cursor: "pointer", fontSize: "0.95rem", textAlign: "left", transition: "all 0.2s ease"
+          display: "flex", alignItems: "center", gap: "1rem", padding: "0.85rem 1rem", borderRadius: "8px", color: "rgba(255,255,255,0.7)", background: "transparent", border: "1px solid transparent", width: "100%", cursor: "pointer", fontSize: "0.95rem", textAlign: "left", transition: "all 0.2s ease"
         }}>
-          <LogOut size={18} /> Salir Sesión
+          <LogOut size={18} /> Cerrar sesión
         </button>
       </div>
     </aside>
+  );
+}
+
+export default function Sidebar({ locale }: { locale: string }) {
+  return (
+    <Suspense fallback={<div style={{ width: "260px", background: "#000" }}></div>}>
+      <SidebarContent locale={locale} />
+    </Suspense>
   );
 }
