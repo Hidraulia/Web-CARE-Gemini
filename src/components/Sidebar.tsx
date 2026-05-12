@@ -25,12 +25,15 @@ function SidebarContent({ locale }: { locale: string }) {
       position: "fixed",
       top: 0,
       left: 0,
-      background: "#000000",
+      background: "rgba(0,0,0,0.85)",
+      backdropFilter: "blur(12px)",
+      WebkitBackdropFilter: "blur(12px)",
       color: "#F9F9F9",
       display: "flex",
       flexDirection: "column",
-      borderRight: "1px solid rgba(255,255,255,0.05)",
-      zIndex: 1000
+      borderRight: "1px solid rgba(255,255,255,0.08)",
+      zIndex: 1000,
+      boxShadow: "5px 0 30px rgba(0,0,0,0.3)"
     }}>
       <div style={{ padding: "2rem", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
         <button onClick={() => window.location.href = `/${locale}`} style={{ textDecoration: "none", background: "transparent", border: "none", cursor: "pointer", textAlign: "left", padding: 0 }}>

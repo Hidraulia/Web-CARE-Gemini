@@ -42,8 +42,12 @@ function VIPDashboardContent() {
 
   const renderDashboard = () => (
     <>
+      <style dangerouslySetInnerHTML={{ __html: `
+        .dashboard-card { transition: all 0.3s ease; }
+        .dashboard-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(189,165,123,0.15) !important; border-color: rgba(189,165,123,0.5) !important; }
+      `}} />
       <div style={{ marginBottom: "3rem" }}>
-        <h1 style={{ fontFamily: "var(--font-serif)", fontSize: "2.5rem", color: "#222222", marginBottom: "0.5rem" }}>
+        <h1 style={{ fontFamily: "var(--font-serif)", fontSize: "2.5rem", color: "#222222", marginBottom: "0.5rem", letterSpacing: "0.02em" }}>
           Mi Residencia Exclusiva
         </h1>
         <p style={{ color: "#666666", fontSize: "1.05rem" }}>
@@ -52,7 +56,7 @@ function VIPDashboardContent() {
       </div>
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "2rem", marginBottom: "3rem" }}>
-        <div style={cardStyle}>
+        <div className="dashboard-card" style={cardStyle}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <h3 style={{ fontSize: "1rem", color: "#666666", fontWeight: 500 }}>Estado de mi Hogar</h3>
             <div style={{ padding: "0.5rem", background: "rgba(189,165,123,0.1)", borderRadius: "8px", color: "var(--color-accent)" }}>
@@ -66,7 +70,7 @@ function VIPDashboardContent() {
           <p style={{ fontSize: "0.85rem", color: "#666666", marginTop: "0.5rem" }}>Progreso: 85%</p>
         </div>
 
-        <div style={cardStyle}>
+        <div className="dashboard-card" style={cardStyle}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <h3 style={{ fontSize: "1rem", color: "#666666", fontWeight: 500 }}>Mobiliario a Medida</h3>
             <div style={{ padding: "0.5rem", background: "rgba(0,0,0,0.03)", borderRadius: "8px", color: "#555555" }}>
@@ -77,7 +81,7 @@ function VIPDashboardContent() {
           <p style={{ fontSize: "0.85rem", color: "#666666" }}>Piezas en producción</p>
         </div>
 
-        <div style={cardStyle}>
+        <div className="dashboard-card" style={cardStyle}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <h3 style={{ fontSize: "1rem", color: "#666666", fontWeight: 500 }}>Próximas Entregas</h3>
             <div style={{ padding: "0.5rem", background: "rgba(0,0,0,0.03)", borderRadius: "8px", color: "#555555" }}>
@@ -89,7 +93,7 @@ function VIPDashboardContent() {
         </div>
       </div>
 
-      <section style={cardStyle}>
+      <section className="dashboard-card" style={cardStyle}>
         <h2 style={{ fontSize: "1.3rem", marginBottom: "1rem", borderBottom: "1px solid rgba(0,0,0,0.1)", paddingBottom: "1rem", color: "#222222" }}>Últimas Actualizaciones</h2>
         <div style={{ display: "flex", justifyContent: "space-between", padding: "1rem 0", borderBottom: "1px solid rgba(0,0,0,0.05)" }}>
           <div>
@@ -109,14 +113,14 @@ function VIPDashboardContent() {
         <p style={{ color: "#666666", fontSize: "1.05rem" }}>Fotografías del avance de fabricación y montaje.</p>
       </div>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "1.5rem" }}>
-        <div style={{ ...cardStyle, padding: "1rem", alignItems: "center" }}>
+        <div className="dashboard-card" style={{ ...cardStyle, padding: "1rem", alignItems: "center" }}>
           <div style={{ width: "100%", height: "200px", background: "rgba(0,0,0,0.05)", borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center" }}>
             <ImageIcon size={40} color="#ccc" />
           </div>
           <h4 style={{ marginTop: "1rem", fontWeight: 600 }}>Salón Principal</h4>
           <p style={{ fontSize: "0.85rem", color: "#666666" }}>Panelados instalados (Hace 3 días)</p>
         </div>
-        <div style={{ ...cardStyle, padding: "1rem", alignItems: "center" }}>
+        <div className="dashboard-card" style={{ ...cardStyle, padding: "1rem", alignItems: "center" }}>
           <div style={{ width: "100%", height: "200px", background: "rgba(0,0,0,0.05)", borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center" }}>
             <ImageIcon size={40} color="#ccc" />
           </div>
@@ -133,7 +137,7 @@ function VIPDashboardContent() {
         <h1 style={{ fontFamily: "var(--font-serif)", fontSize: "2.5rem", color: "#222222", marginBottom: "0.5rem" }}>Estado de Pagos</h1>
         <p style={{ color: "#666666", fontSize: "1.05rem" }}>Próximas cuotas y extras contratados.</p>
       </div>
-      <div style={cardStyle}>
+      <div className="dashboard-card" style={cardStyle}>
          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "1rem 0", borderBottom: "1px solid rgba(0,0,0,0.05)" }}>
            <div>
              <h4 style={{ fontWeight: 600 }}>Cuota #2 - Certificación Acabados</h4>
@@ -158,7 +162,7 @@ function VIPDashboardContent() {
         <h1 style={{ fontFamily: "var(--font-serif)", fontSize: "2.5rem", color: "#222222", marginBottom: "0.5rem" }}>Asistente de Estilismo</h1>
         <p style={{ color: "#666666", fontSize: "1.05rem" }}>Consulta sobre materiales, limpieza y decoración.</p>
       </div>
-      <div style={{ ...cardStyle, height: "500px", justifyContent: "space-between", padding: 0, overflow: "hidden" }}>
+      <div className="dashboard-card" style={{ ...cardStyle, height: "500px", justifyContent: "space-between", padding: 0, overflow: "hidden" }}>
         <div style={{ padding: "2rem", overflowY: "auto", display: "flex", flexDirection: "column", gap: "1.5rem" }}>
           <div style={{ display: "flex", gap: "1rem", maxWidth: "80%" }}>
             <div style={{ width: "40px", height: "40px", borderRadius: "50%", background: "var(--color-accent)", display: "flex", alignItems: "center", justifyContent: "center", color: "#222222", flexShrink: 0 }}>
@@ -185,7 +189,7 @@ function VIPDashboardContent() {
         <h1 style={{ fontFamily: "var(--font-serif)", fontSize: "2.5rem", color: "#222222", marginBottom: "0.5rem" }}>Atención al Cliente</h1>
         <p style={{ color: "#666666", fontSize: "1.05rem" }}>Contacta directamente con tu Project Manager.</p>
       </div>
-      <form style={{ ...cardStyle, maxWidth: "600px" }}>
+      <form className="dashboard-card" style={{ ...cardStyle, maxWidth: "600px" }}>
         <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
           <label style={{ fontSize: "0.85rem", fontWeight: 600, color: "#666666" }}>Asunto</label>
           <input type="text" placeholder="Ej: Duda sobre acabados" style={{ padding: "0.85rem", borderRadius: "6px", border: "1px solid rgba(0,0,0,0.1)", fontSize: "0.95rem", outline: "none" }} />

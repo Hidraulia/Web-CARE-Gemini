@@ -42,8 +42,12 @@ function EmpresaDashboardContent() {
 
   const renderDashboard = () => (
     <>
+      <style dangerouslySetInnerHTML={{ __html: `
+        .dashboard-card { transition: all 0.3s ease; }
+        .dashboard-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(189,165,123,0.15) !important; border-color: rgba(189,165,123,0.5) !important; }
+      `}} />
       <div style={{ marginBottom: "3rem" }}>
-        <h1 style={{ fontFamily: "var(--font-serif)", fontSize: "2.5rem", color: "#222222", marginBottom: "0.5rem" }}>
+        <h1 style={{ fontFamily: "var(--font-serif)", fontSize: "2.5rem", color: "#222222", marginBottom: "0.5rem", letterSpacing: "0.02em" }}>
           Bienvenido de nuevo, {user?.name || user?.empresa_nombre || "Partner"}
         </h1>
         <p style={{ color: "#666666", fontSize: "1.05rem" }}>
@@ -52,7 +56,7 @@ function EmpresaDashboardContent() {
       </div>
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "2rem", marginBottom: "3rem" }}>
-        <div style={cardStyle}>
+        <div className="dashboard-card" style={cardStyle}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <h3 style={{ fontSize: "1rem", color: "#666666", fontWeight: 500 }}>Proyectos en Fabricación</h3>
             <div style={{ padding: "0.5rem", background: "rgba(189,165,123,0.1)", borderRadius: "8px", color: "var(--color-accent)" }}>
@@ -66,7 +70,7 @@ function EmpresaDashboardContent() {
           <p style={{ fontSize: "0.85rem", color: "#666666", marginTop: "0.5rem" }}>Progreso global de fabricación al 65%</p>
         </div>
 
-        <div style={cardStyle}>
+        <div className="dashboard-card" style={cardStyle}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <h3 style={{ fontSize: "1rem", color: "#666666", fontWeight: 500 }}>Presupuestos Pendientes</h3>
             <div style={{ padding: "0.5rem", background: "rgba(0,0,0,0.03)", borderRadius: "8px", color: "#555555" }}>
@@ -77,7 +81,7 @@ function EmpresaDashboardContent() {
           <p style={{ fontSize: "0.85rem", color: "#666666" }}>Última actualización hace 2h</p>
         </div>
 
-        <div style={cardStyle}>
+        <div className="dashboard-card" style={cardStyle}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <h3 style={{ fontSize: "1rem", color: "#666666", fontWeight: 500 }}>Proyectos Finalizados</h3>
             <div style={{ padding: "0.5rem", background: "rgba(0,0,0,0.03)", borderRadius: "8px", color: "#555555" }}>
@@ -89,7 +93,7 @@ function EmpresaDashboardContent() {
         </div>
       </div>
 
-      <section style={cardStyle}>
+      <section className="dashboard-card" style={cardStyle}>
         <h2 style={{ fontSize: "1.3rem", marginBottom: "1rem", borderBottom: "1px solid rgba(0,0,0,0.1)", paddingBottom: "1rem", color: "#222222" }}>Actividad Reciente</h2>
         
         <div style={{ display: "flex", justifyContent: "space-between", padding: "1rem 0", borderBottom: "1px solid rgba(0,0,0,0.05)" }}>
@@ -118,7 +122,7 @@ function EmpresaDashboardContent() {
         <p style={{ color: "#666666", fontSize: "1.05rem" }}>Listado de promociones y estado logístico.</p>
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
-        <div style={cardStyle}>
+        <div className="dashboard-card" style={cardStyle}>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <div>
               <h3 style={{ fontSize: "1.2rem", fontWeight: 600 }}>Promoción "Vistas del Mar"</h3>
@@ -130,7 +134,7 @@ function EmpresaDashboardContent() {
              <p style={{ fontSize: "0.9rem", color: "#666666" }}>Llegada estimada a obra: 15 de Noviembre.</p>
           </div>
         </div>
-        <div style={cardStyle}>
+        <div className="dashboard-card" style={cardStyle}>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <div>
               <h3 style={{ fontSize: "1.2rem", fontWeight: 600 }}>Hotel Boutique Centro</h3>
@@ -149,7 +153,7 @@ function EmpresaDashboardContent() {
         <h1 style={{ fontFamily: "var(--font-serif)", fontSize: "2.5rem", color: "#222222", marginBottom: "0.5rem" }}>Historial de Facturación</h1>
         <p style={{ color: "#666666", fontSize: "1.05rem" }}>Presupuestos emitidos y facturas consolidadas.</p>
       </div>
-      <div style={cardStyle}>
+      <div className="dashboard-card" style={cardStyle}>
          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "1rem 0", borderBottom: "1px solid rgba(0,0,0,0.05)" }}>
            <div>
              <h4 style={{ fontWeight: 600 }}>Factura F-2026-089</h4>
@@ -180,7 +184,7 @@ function EmpresaDashboardContent() {
         <h1 style={{ fontFamily: "var(--font-serif)", fontSize: "2.5rem", color: "#222222", marginBottom: "0.5rem" }}>Consultor Técnico IA</h1>
         <p style={{ color: "#666666", fontSize: "1.05rem" }}>Resolución instantánea de dudas sobre optimización técnica y materiales.</p>
       </div>
-      <div style={{ ...cardStyle, height: "500px", justifyContent: "space-between", padding: 0, overflow: "hidden" }}>
+      <div className="dashboard-card" style={{ ...cardStyle, height: "500px", justifyContent: "space-between", padding: 0, overflow: "hidden" }}>
         <div style={{ padding: "2rem", overflowY: "auto", display: "flex", flexDirection: "column", gap: "1.5rem" }}>
           <div style={{ display: "flex", gap: "1rem", maxWidth: "80%" }}>
             <div style={{ width: "40px", height: "40px", borderRadius: "50%", background: "var(--color-accent)", display: "flex", alignItems: "center", justifyContent: "center", color: "#222222", flexShrink: 0 }}>
@@ -207,7 +211,7 @@ function EmpresaDashboardContent() {
         <h1 style={{ fontFamily: "var(--font-serif)", fontSize: "2.5rem", color: "#222222", marginBottom: "0.5rem" }}>Soporte Corporativo</h1>
         <p style={{ color: "#666666", fontSize: "1.05rem" }}>Contacta directamente con tu Account Manager asignado.</p>
       </div>
-      <form style={{ ...cardStyle, maxWidth: "600px" }}>
+      <form className="dashboard-card" style={{ ...cardStyle, maxWidth: "600px" }}>
         <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
           <label style={{ fontSize: "0.85rem", fontWeight: 600, color: "#666666" }}>Asunto</label>
           <input type="text" placeholder="Ej: Retraso en entrega" style={{ padding: "0.85rem", borderRadius: "6px", border: "1px solid rgba(0,0,0,0.1)", fontSize: "0.95rem", outline: "none" }} />

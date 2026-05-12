@@ -37,8 +37,8 @@ export default function RootLayout({
   params: { locale: string };
 }>) {
   return (
-    <html lang={locale}>
-      <body style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+    <html lang={locale} style={{ backgroundColor: '#000000', margin: 0, padding: 0 }}>
+      <body style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', backgroundColor: '#000000', color: '#FFFFFF', margin: 0, padding: 0 }}>
         <NextAuthProvider>
           <CustomCursor />
           <Header locale={locale} />

@@ -72,9 +72,15 @@ export default function Header({ locale }: { locale: string }) {
               {link.name}
             </Link>
           ))}
-          <Link href={privateLink} style={{ color: isLoggedIn ? 'var(--color-accent)' : 'inherit' }}>
-            {isLoggedIn ? "Mi Cuenta" : "Área Privada"}
-          </Link>
+          {isLoggedIn ? (
+            <button onClick={() => window.location.href = privateLink} style={{ background: "transparent", border: "none", color: "var(--color-accent)", textTransform: "uppercase", letterSpacing: "0.1em", cursor: "pointer", padding: 0, fontSize: "0.8rem" }} className="hover-underline">
+              MI CUENTA
+            </button>
+          ) : (
+            <Link href={privateLink} style={{ color: 'inherit' }} className="hover-underline">
+              ÁREA PRIVADA
+            </Link>
+          )}
           {isLoggedIn && (
              <button onClick={() => signOut({ callbackUrl: '/', redirect: true })} style={{ background: 'transparent', border: 'none', cursor: 'pointer', fontSize: '0.7rem', color: 'var(--color-text-light)', borderLeft: '1px solid rgba(255,255,255,0.1)', paddingLeft: '1rem', textTransform: "uppercase", letterSpacing: "0.1em" }}>
                SALIR
@@ -154,9 +160,15 @@ export default function Header({ locale }: { locale: string }) {
                   {link.name}
                 </Link>
               ))}
-              <Link href={privateLink} onClick={() => setMobileMenuOpen(false)} style={{ color: isLoggedIn ? 'var(--color-accent)' : 'inherit', borderBottom: "1px solid rgba(255,255,255,0.05)", paddingBottom: "1rem" }}>
-                {isLoggedIn ? "Mi Cuenta" : "Área Privada"}
-              </Link>
+              {isLoggedIn ? (
+                <button onClick={() => { setMobileMenuOpen(false); window.location.href = privateLink; }} style={{ background: "transparent", border: "none", color: "var(--color-accent)", textTransform: "uppercase", letterSpacing: "0.1em", cursor: "pointer", padding: "0 0 1rem 0", fontSize: "1.2rem", textAlign: "left", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
+                  MI CUENTA
+                </button>
+              ) : (
+                <Link href={privateLink} onClick={() => setMobileMenuOpen(false)} style={{ color: 'inherit', borderBottom: "1px solid rgba(255,255,255,0.05)", paddingBottom: "1rem" }}>
+                  ÁREA PRIVADA
+                </Link>
+              )}
               {isLoggedIn && (
                 <button onClick={() => signOut({ callbackUrl: '/', redirect: true })} style={{ background: 'transparent', border: 'none', cursor: 'pointer', fontSize: '1rem', color: 'var(--color-text-light)', textAlign: "left", padding: 0, textTransform: "uppercase", letterSpacing: "0.1em" }}>
                   Cerrar Sesión

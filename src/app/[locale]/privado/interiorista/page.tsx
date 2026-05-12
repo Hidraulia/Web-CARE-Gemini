@@ -42,8 +42,12 @@ function InterioristaDashboardContent() {
 
   const renderDashboard = () => (
     <>
+      <style dangerouslySetInnerHTML={{ __html: `
+        .dashboard-card { transition: all 0.3s ease; }
+        .dashboard-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(189,165,123,0.15) !important; border-color: rgba(189,165,123,0.5) !important; }
+      `}} />
       <div style={{ marginBottom: "3rem" }}>
-        <h1 style={{ fontFamily: "var(--font-serif)", fontSize: "2.5rem", color: "#222222", marginBottom: "0.5rem" }}>
+        <h1 style={{ fontFamily: "var(--font-serif)", fontSize: "2.5rem", color: "#222222", marginBottom: "0.5rem", letterSpacing: "0.02em" }}>
           Bienvenido de nuevo, {user?.name || "Profesional"}
         </h1>
         <p style={{ color: "#666666", fontSize: "1.05rem" }}>
@@ -52,7 +56,7 @@ function InterioristaDashboardContent() {
       </div>
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "2rem", marginBottom: "3rem" }}>
-        <div style={cardStyle}>
+        <div className="dashboard-card" style={cardStyle}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <h3 style={{ fontSize: "1rem", color: "#666666", fontWeight: 500 }}>Descarga de Catálogos</h3>
             <div style={{ padding: "0.5rem", background: "rgba(189,165,123,0.1)", borderRadius: "8px", color: "var(--color-accent)" }}>
@@ -65,7 +69,7 @@ function InterioristaDashboardContent() {
           </button>
         </div>
 
-        <div style={cardStyle}>
+        <div className="dashboard-card" style={cardStyle}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <h3 style={{ fontSize: "1rem", color: "#666666", fontWeight: 500 }}>Modelos BIM / 3D</h3>
             <div style={{ padding: "0.5rem", background: "rgba(0,0,0,0.03)", borderRadius: "8px", color: "#555555" }}>
@@ -76,7 +80,7 @@ function InterioristaDashboardContent() {
           <p style={{ fontSize: "0.85rem", color: "#666666" }}>Archivos actualizados</p>
         </div>
 
-        <div style={cardStyle}>
+        <div className="dashboard-card" style={cardStyle}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <h3 style={{ fontSize: "1rem", color: "#666666", fontWeight: 500 }}>Mis Especificaciones</h3>
             <div style={{ padding: "0.5rem", background: "rgba(0,0,0,0.03)", borderRadius: "8px", color: "#555555" }}>
@@ -88,7 +92,7 @@ function InterioristaDashboardContent() {
         </div>
       </div>
 
-      <section style={cardStyle}>
+      <section className="dashboard-card" style={cardStyle}>
         <h2 style={{ fontSize: "1.3rem", marginBottom: "1rem", borderBottom: "1px solid rgba(0,0,0,0.1)", paddingBottom: "1rem", color: "#222222" }}>Estado de Proyectos Activos</h2>
         <div style={{ display: "flex", justifyContent: "space-between", padding: "1rem 0", borderBottom: "1px solid rgba(0,0,0,0.05)" }}>
           <div>
@@ -108,7 +112,7 @@ function InterioristaDashboardContent() {
         <p style={{ color: "#666666", fontSize: "1.05rem" }}>Acceso directo a ficheros BIM, modelos 3D y especificaciones por obra.</p>
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
-        <div style={cardStyle}>
+        <div className="dashboard-card" style={cardStyle}>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <div>
               <h3 style={{ fontSize: "1.2rem", fontWeight: 600 }}>Ático "Diagonal"</h3>
@@ -120,7 +124,7 @@ function InterioristaDashboardContent() {
              <p style={{ fontSize: "0.9rem", color: "#666666" }}>Contiene: Planos de distribución, Modelos Sketchup y Texturas.</p>
           </div>
         </div>
-        <div style={cardStyle}>
+        <div className="dashboard-card" style={cardStyle}>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <div>
               <h3 style={{ fontSize: "1.2rem", fontWeight: 600 }}>Restaurante "El Faro"</h3>
@@ -139,7 +143,7 @@ function InterioristaDashboardContent() {
         <h1 style={{ fontFamily: "var(--font-serif)", fontSize: "2.5rem", color: "#222222", marginBottom: "0.5rem" }}>Generador de Cotizaciones</h1>
         <p style={{ color: "#666666", fontSize: "1.05rem" }}>Crea y gestiona presupuestos para tus clientes finales con tus márgenes aplicados.</p>
       </div>
-      <div style={{ ...cardStyle, background: "#FFFFFF", padding: "3rem", textAlign: "center", alignItems: "center", justifyContent: "center" }}>
+      <div className="dashboard-card" style={{ ...cardStyle, background: "#FFFFFF", padding: "3rem", textAlign: "center", alignItems: "center", justifyContent: "center" }}>
         <FileCheck size={48} color="var(--color-accent)" style={{ marginBottom: "1rem" }} />
         <h3 style={{ fontSize: "1.5rem", fontWeight: 600, color: "#222" }}>Nuevo Presupuesto</h3>
         <p style={{ color: "#666", maxWidth: "400px", marginTop: "0.5rem", marginBottom: "2rem" }}>Añade referencias de catálogo y aplica tus márgenes profesionales en tiempo real.</p>
@@ -156,7 +160,7 @@ function InterioristaDashboardContent() {
         <h1 style={{ fontFamily: "var(--font-serif)", fontSize: "2.5rem", color: "#222222", marginBottom: "0.5rem" }}>Calculadora Inteligente</h1>
         <p style={{ color: "#666666", fontSize: "1.05rem" }}>Asistencia inmediata para cálculo de materiales, medidas y compatibilidad técnica.</p>
       </div>
-      <div style={{ ...cardStyle, height: "500px", justifyContent: "space-between", padding: 0, overflow: "hidden" }}>
+      <div className="dashboard-card" style={{ ...cardStyle, height: "500px", justifyContent: "space-between", padding: 0, overflow: "hidden" }}>
         <div style={{ padding: "2rem", overflowY: "auto", display: "flex", flexDirection: "column", gap: "1.5rem" }}>
           <div style={{ display: "flex", gap: "1rem", maxWidth: "80%" }}>
             <div style={{ width: "40px", height: "40px", borderRadius: "50%", background: "var(--color-accent)", display: "flex", alignItems: "center", justifyContent: "center", color: "#222222", flexShrink: 0 }}>
@@ -183,7 +187,7 @@ function InterioristaDashboardContent() {
         <h1 style={{ fontFamily: "var(--font-serif)", fontSize: "2.5rem", color: "#222222", marginBottom: "0.5rem" }}>Soporte para Profesionales</h1>
         <p style={{ color: "#666666", fontSize: "1.05rem" }}>Contacta con la oficina técnica o tu Project Manager.</p>
       </div>
-      <form style={{ ...cardStyle, maxWidth: "600px" }}>
+      <form className="dashboard-card" style={{ ...cardStyle, maxWidth: "600px" }}>
         <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
           <label style={{ fontSize: "0.85rem", fontWeight: 600, color: "#666666" }}>Asunto</label>
           <input type="text" placeholder="Ej: Consulta técnica sobre herrajes" style={{ padding: "0.85rem", borderRadius: "6px", border: "1px solid rgba(0,0,0,0.1)", fontSize: "0.95rem", outline: "none" }} />
