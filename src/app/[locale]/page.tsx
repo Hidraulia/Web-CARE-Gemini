@@ -81,7 +81,7 @@ export default function Home({ params: { locale } }: { params: { locale: string 
         </motion.div>
       </section>
 
-      <section className={styles.section} style={{ padding: "8rem 2rem" }}>
+      <section className={styles.section} style={{ padding: "8rem 2rem", background: "#F9F9F9", color: "#222222" }}>
         <motion.div
           className={styles.sectionHeader}
           initial="hidden"
@@ -91,7 +91,7 @@ export default function Home({ params: { locale } }: { params: { locale: string 
           style={{ textAlign: "center", marginBottom: "5rem" }}
         >
           <p className={styles.sectionSubtitle} style={{ textTransform: "uppercase", letterSpacing: "0.15em", fontSize: "0.85rem", color: "var(--color-accent)", marginBottom: "1rem" }}>Áreas de Experiencia</p>
-          <h2 className={styles.sectionTitle} style={{ fontFamily: "var(--font-serif)", fontSize: "3rem" }}>Segmentos de Servicio</h2>
+          <h2 className={styles.sectionTitle} style={{ fontFamily: "var(--font-serif)", fontSize: "3rem", color: "#222222" }}>Segmentos de Servicio</h2>
         </motion.div>
 
         <motion.div
@@ -158,7 +158,7 @@ export default function Home({ params: { locale } }: { params: { locale: string 
         </motion.div>
       </section>
 
-      <section className={styles.section} style={{ backgroundColor: 'var(--color-bg-dark)', color: '#fff', borderRadius: '4px', padding: "8rem 2rem" }}>
+      <section className={styles.section} style={{ backgroundColor: '#F9F9F9', color: '#222222', borderRadius: '4px', padding: "8rem 2rem" }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem', alignItems: 'center', maxWidth: "1200px", margin: "0 auto" }}>
           <motion.div
             initial="hidden"
@@ -167,15 +167,15 @@ export default function Home({ params: { locale } }: { params: { locale: string 
             variants={staggerContainer}
           >
             <motion.p variants={fadeIn} style={{ textTransform: "uppercase", letterSpacing: "0.15em", fontSize: "0.85rem", color: "var(--color-accent)", marginBottom: "1rem" }}>Excelencia Operativa</motion.p>
-            <motion.h2 variants={fadeIn} className={styles.sectionTitle} style={{ fontFamily: 'var(--font-serif)', fontSize: "2.5rem", marginBottom: "1.5rem" }}>Fabricación Propia Avanzada</motion.h2>
-            <motion.p variants={fadeIn} style={{ marginBottom: '2.5rem', fontSize: '1.05rem', opacity: 0.8, fontWeight: 300, lineHeight: 1.7 }}>
+            <motion.h2 variants={fadeIn} className={styles.sectionTitle} style={{ fontFamily: 'var(--font-serif)', fontSize: "2.5rem", marginBottom: "1.5rem", color: "#222222" }}>Fabricación Propia Avanzada</motion.h2>
+            <motion.p variants={fadeIn} style={{ marginBottom: '2.5rem', fontSize: '1.05rem', color: "#666666", fontWeight: 400, lineHeight: 1.7 }}>
               Controlamos todo el proceso end-to-end. Desde la ingeniería de detalle hasta el canteado láser y la instalación final con operarios propios formados en la casa madre. Nada se delega al azar.
             </motion.p>
-            <motion.ul variants={fadeIn} style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '1.2rem', opacity: 0.9 }}>
-              <li style={{ borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '0.8rem', display: "flex", alignItems: "center", gap: "1rem" }}>
+            <motion.ul variants={fadeIn} style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '1.2rem', color: "#222222" }}>
+              <li style={{ borderBottom: '1px solid rgba(0,0,0,0.1)', paddingBottom: '0.8rem', display: "flex", alignItems: "center", gap: "1rem" }}>
                 <span style={{ color: "var(--color-accent)" }}>❖</span> Control Numérico de Alta Precisión
               </li>
-              <li style={{ borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '0.8rem', display: "flex", alignItems: "center", gap: "1rem" }}>
+              <li style={{ borderBottom: '1px solid rgba(0,0,0,0.1)', paddingBottom: '0.8rem', display: "flex", alignItems: "center", gap: "1rem" }}>
                 <span style={{ color: "var(--color-accent)" }}>❖</span> Acabados Premium y Técnicas Exclusivas
               </li>
               <li style={{ paddingBottom: '0.8rem', display: "flex", alignItems: "center", gap: "1rem" }}>

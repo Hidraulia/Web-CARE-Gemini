@@ -47,7 +47,7 @@ function VIPDashboardContent() {
           Mi Residencia Exclusiva
         </h1>
         <p style={{ color: "#666666", fontSize: "1.05rem" }}>
-          Bienvenido, {user?.email || "Cliente VIP"}
+          Bienvenido de nuevo, {user?.name || user?.email || "Cliente VIP"}
         </p>
       </div>
 

@@ -44,7 +44,7 @@ function InterioristaDashboardContent() {
     <>
       <div style={{ marginBottom: "3rem" }}>
         <h1 style={{ fontFamily: "var(--font-serif)", fontSize: "2.5rem", color: "#222222", marginBottom: "0.5rem" }}>
-          Portal para Profesionales
+          Bienvenido de nuevo, {user?.name || "Profesional"}
         </h1>
         <p style={{ color: "#666666", fontSize: "1.05rem" }}>
           {user?.especialidad || "Estudio de Interiorismo / Arquitectura"}

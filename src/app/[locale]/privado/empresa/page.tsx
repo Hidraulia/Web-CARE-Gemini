@@ -44,7 +44,7 @@ function EmpresaDashboardContent() {
     <>
       <div style={{ marginBottom: "3rem" }}>
         <h1 style={{ fontFamily: "var(--font-serif)", fontSize: "2.5rem", color: "#222222", marginBottom: "0.5rem" }}>
-          Bienvenido, {user?.empresa_nombre || "Empresa Colaboradora"}
+          Bienvenido de nuevo, {user?.name || user?.empresa_nombre || "Partner"}
         </h1>
         <p style={{ color: "#666666", fontSize: "1.05rem" }}>
           Panel Corporativo Partner B2B

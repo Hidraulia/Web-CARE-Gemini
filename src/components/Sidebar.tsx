@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
-import { LayoutDashboard, FolderKanban, FileText, Bot, Settings, LogOut } from "lucide-react";
+import { LayoutDashboard, FolderKanban, FileText, Bot, Settings, LogOut, Globe } from "lucide-react";
 import { signOut } from "next-auth/react";
 import { Suspense } from "react";
 
@@ -12,6 +12,7 @@ function SidebarContent({ locale }: { locale: string }) {
   const currentTab = searchParams.get("tab") || "dashboard";
 
   const navItems = [
+    { name: "Ver Sitio Web", href: `/${locale}`, tab: "", icon: Globe },
     { name: "Dashboard", href: "?tab=dashboard", tab: "dashboard", icon: LayoutDashboard },
     { name: "Mis Proyectos", href: "?tab=proyectos", tab: "proyectos", icon: FolderKanban },
     { name: "Presupuestos", href: "?tab=presupuestos", tab: "presupuestos", icon: FileText },
@@ -33,13 +34,15 @@ function SidebarContent({ locale }: { locale: string }) {
       zIndex: 1000
     }}>
       <div style={{ padding: "2rem", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
-        <h2 style={{ fontFamily: "var(--font-serif)", fontSize: "1.8rem", color: "var(--color-accent)", margin: 0, letterSpacing: "0.05em" }}>CARE</h2>
-        <p style={{ fontSize: "0.75rem", textTransform: "uppercase", letterSpacing: "0.1em", opacity: 0.5, marginTop: "0.25rem" }}>Portal Colaborativo</p>
+        <Link href={`/${locale}`} style={{ textDecoration: "none" }}>
+          <h2 style={{ fontFamily: "var(--font-serif)", fontSize: "1.8rem", color: "var(--color-accent)", margin: 0, letterSpacing: "0.05em" }}>CARE</h2>
+          <p style={{ fontSize: "0.75rem", textTransform: "uppercase", letterSpacing: "0.1em", color: "#F9F9F9", opacity: 0.5, marginTop: "0.25rem", margin: 0 }}>Portal Colaborativo</p>
+        </Link>
       </div>
 
       <nav style={{ flex: 1, padding: "2rem 1rem", display: "flex", flexDirection: "column", gap: "0.5rem" }}>
         {navItems.map((item) => {
-          const isActive = currentTab === item.tab;
+          const isActive = item.tab ? currentTab === item.tab : false;
 
           return (
             <Link key={item.name} href={item.href} style={{
@@ -69,7 +72,7 @@ function SidebarContent({ locale }: { locale: string }) {
           <Settings size={18} /> Soporte / Ajustes
         </Link>
         <button onClick={() => signOut({ callbackUrl: '/', redirect: true })} style={{
-          display: "flex", alignItems: "center", gap: "1rem", padding: "0.85rem 1rem", borderRadius: "8px", color: "rgba(255,255,255,0.7)", background: "transparent", border: "1px solid transparent", width: "100%", cursor: "pointer", fontSize: "0.95rem", textAlign: "left", transition: "all 0.2s ease"
+          display: "flex", alignItems: "center", gap: "1rem", padding: "0.85rem 1rem", borderRadius: "8px", color: "#ff6b6b", background: "rgba(255, 107, 107, 0.05)", border: "1px solid transparent", width: "100%", cursor: "pointer", fontSize: "0.95rem", textAlign: "left", transition: "all 0.2s ease"
         }}>
           <LogOut size={18} /> Cerrar sesión
         </button>
