@@ -2,10 +2,10 @@
 
 import { useSession } from "next-auth/react";
 import { useSearchParams, useRouter } from "next/navigation";
-import { Briefcase, FileCheck, CheckCircle2, Download, Send, MessageSquare } from "lucide-react";
-import { useEffect } from "react";
+import { Briefcase, FileCheck, CheckCircle2, Download, Send, MessageSquare, Bot } from "lucide-react";
+import { useEffect, Suspense } from "react";
 
-export default function EmpresaDashboard() {
+function EmpresaDashboardContent() {
   const { data: session, status } = useSession();
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -235,5 +235,13 @@ export default function EmpresaDashboard() {
       {tab === "ia" && renderIA()}
       {tab === "soporte" && renderSoporte()}
     </div>
+  );
+}
+
+export default function EmpresaDashboard() {
+  return (
+    <Suspense fallback={<div style={{ padding: "2rem", color: "#222" }}>Cargando su panel seguro...</div>}>
+      <EmpresaDashboardContent />
+    </Suspense>
   );
 }

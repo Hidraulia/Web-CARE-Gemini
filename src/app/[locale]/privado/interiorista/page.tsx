@@ -2,10 +2,10 @@
 
 import { useSession } from "next-auth/react";
 import { useSearchParams, useRouter } from "next/navigation";
-import { Download, Folders, Ruler, Send, MessageSquare } from "lucide-react";
-import { useEffect } from "react";
+import { Download, Folders, Ruler, Send, MessageSquare, FileCheck, Bot } from "lucide-react";
+import { useEffect, Suspense } from "react";
 
-export default function InterioristaDashboard() {
+function InterioristaDashboardContent() {
   const { data: session, status } = useSession();
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -160,7 +160,7 @@ export default function InterioristaDashboard() {
         <div style={{ padding: "2rem", overflowY: "auto", display: "flex", flexDirection: "column", gap: "1.5rem" }}>
           <div style={{ display: "flex", gap: "1rem", maxWidth: "80%" }}>
             <div style={{ width: "40px", height: "40px", borderRadius: "50%", background: "var(--color-accent)", display: "flex", alignItems: "center", justifyContent: "center", color: "#222222", flexShrink: 0 }}>
-              <Folders size={20} />
+              <Bot size={20} />
             </div>
             <div style={{ background: "rgba(0,0,0,0.05)", padding: "1rem 1.5rem", borderRadius: "0 16px 16px 16px", color: "#222222", fontSize: "0.95rem", lineHeight: 1.5 }}>
               Hola, soy tu consultor técnico de CARE. ¿En qué puedo ayudarte con tu proyecto hoy?
@@ -211,5 +211,13 @@ export default function InterioristaDashboard() {
       {tab === "ia" && renderIA()}
       {tab === "soporte" && renderSoporte()}
     </div>
+  );
+}
+
+export default function InterioristaDashboard() {
+  return (
+    <Suspense fallback={<div style={{ padding: "2rem", color: "#222" }}>Cargando su panel seguro...</div>}>
+      <InterioristaDashboardContent />
+    </Suspense>
   );
 }

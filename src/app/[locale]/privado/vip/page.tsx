@@ -2,10 +2,10 @@
 
 import { useSession } from "next-auth/react";
 import { useSearchParams, useRouter } from "next/navigation";
-import { Home, Package, Truck, Image as ImageIcon, Send, MessageSquare } from "lucide-react";
-import { useEffect } from "react";
+import { Home, Package, Truck, Image as ImageIcon, Send, MessageSquare, Bot } from "lucide-react";
+import { useEffect, Suspense } from "react";
 
-export default function VIPDashboard() {
+function VIPDashboardContent() {
   const { data: session, status } = useSession();
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -213,5 +213,13 @@ export default function VIPDashboard() {
       {tab === "ia" && renderIA()}
       {tab === "soporte" && renderSoporte()}
     </div>
+  );
+}
+
+export default function VIPDashboard() {
+  return (
+    <Suspense fallback={<div style={{ padding: "2rem", color: "#222" }}>Cargando su panel seguro...</div>}>
+      <VIPDashboardContent />
+    </Suspense>
   );
 }
