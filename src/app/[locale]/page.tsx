@@ -115,7 +115,7 @@ export default function Home({ params: { locale } }: { params: { locale: string 
             {/* Contract */}
             <motion.div variants={fadeIn} style={{ position: "relative", height: "450px", overflow: "hidden", borderRadius: "6px", border: "1px solid rgba(189,165,123,0.15)", cursor: "crosshair" }} className="hoverCard">
               <motion.div className="imgContainer" style={{ width: "100%", height: "100%", transition: "transform 0.4s ease" }}>
-                <video src="/videos/contract.mp4" autoPlay muted loop playsInline controls={false} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                <video src="/videos/Contract.mp4" autoPlay muted loop playsInline controls={false} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
               </motion.div>
               <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.4)" }}></div>
               <div style={{ position: "absolute", bottom: "0", left: "0", width: "100%", padding: "2.5rem", color: "#fff", display: "flex", flexDirection: "column", justifyContent: "flex-end", height: "100%" }}>
@@ -131,7 +131,7 @@ export default function Home({ params: { locale } }: { params: { locale: string 
             {/* Arquitectos */}
             <motion.div variants={fadeIn} style={{ position: "relative", height: "450px", overflow: "hidden", borderRadius: "6px", border: "1px solid rgba(189,165,123,0.15)", cursor: "crosshair" }} className="hoverCard">
               <motion.div className="imgContainer" style={{ width: "100%", height: "100%", transition: "transform 0.4s ease" }}>
-                <video src="/videos/arquitectos.mp4" autoPlay muted loop playsInline controls={false} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                <video src="/videos/Arquitectos.mp4" autoPlay muted loop playsInline controls={false} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
               </motion.div>
               <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.4)" }}></div>
               <div style={{ position: "absolute", bottom: "0", left: "0", width: "100%", padding: "2.5rem", color: "#fff", display: "flex", flexDirection: "column", justifyContent: "flex-end", height: "100%" }}>
@@ -147,7 +147,7 @@ export default function Home({ params: { locale } }: { params: { locale: string 
             {/* Reformistas */}
             <motion.div variants={fadeIn} style={{ position: "relative", height: "450px", overflow: "hidden", borderRadius: "6px", border: "1px solid rgba(189,165,123,0.15)", cursor: "crosshair" }} className="hoverCard">
               <motion.div className="imgContainer" style={{ width: "100%", height: "100%", transition: "transform 0.4s ease" }}>
-                <video src="/videos/reformistas.mp4" autoPlay muted loop playsInline controls={false} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                <video src="/videos/Reformistas.mp4" autoPlay muted loop playsInline controls={false} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
               </motion.div>
               <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.4)" }}></div>
               <div style={{ position: "absolute", bottom: "0", left: "0", width: "100%", padding: "2.5rem", color: "#fff", display: "flex", flexDirection: "column", justifyContent: "flex-end", height: "100%" }}>
@@ -163,7 +163,7 @@ export default function Home({ params: { locale } }: { params: { locale: string 
             {/* Interioristas */}
             <motion.div variants={fadeIn} style={{ position: "relative", height: "450px", overflow: "hidden", borderRadius: "6px", border: "1px solid rgba(189,165,123,0.15)", cursor: "crosshair" }} className="hoverCard">
               <motion.div className="imgContainer" style={{ width: "100%", height: "100%", transition: "transform 0.4s ease" }}>
-                <video src="/videos/interioristas.mp4" autoPlay muted loop playsInline controls={false} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                <video src="/videos/Interioristas.mp4" autoPlay muted loop playsInline controls={false} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
               </motion.div>
               <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.4)" }}></div>
               <div style={{ position: "absolute", bottom: "0", left: "0", width: "100%", padding: "2.5rem", color: "#fff", display: "flex", flexDirection: "column", justifyContent: "flex-end", height: "100%" }}>
