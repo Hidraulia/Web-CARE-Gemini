@@ -3,7 +3,7 @@ import Logo from './Logo';
 
 export default function Footer({ locale }: { locale: string }) {
   return (
-    <footer style={{ background: 'var(--color-bg-dark)', color: 'var(--color-text-light)', padding: '4rem 2rem', marginTop: 'auto', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+    <footer style={{ background: '#000000', color: 'var(--color-text-light)', padding: '4rem 2rem', marginTop: 'auto', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '3rem' }}>
         <div>
           <div style={{ marginBottom: '1rem' }}>

@@ -58,11 +58,11 @@ export default function Home({ params: { locale } }: { params: { locale: string 
           <motion.p variants={fadeIn} style={{ textTransform: "uppercase", letterSpacing: "0.2em", fontSize: "0.85rem", color: "var(--color-accent)", marginBottom: "1rem" }}>
             Maison CARE
           </motion.p>
-          <motion.h1 variants={fadeIn} style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(3rem, 6vw, 5rem)", fontWeight: 400, lineHeight: 1.1, marginBottom: "1.5rem", letterSpacing: "0.02em" }}>
+          <motion.h1 variants={fadeIn} style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(2rem, 3.5vw, 3rem)", fontWeight: 400, lineHeight: 1.3, marginBottom: "1.5rem", letterSpacing: "0.02em", maxWidth: "850px", margin: "0 auto 1.5rem" }}>
             Mobiliario de autor diseñado para perdurar, <br />
             fabricado para exigir.
           </motion.h1>
-          <motion.p variants={fadeIn} style={{ fontSize: "1.1rem", opacity: 0.85, maxWidth: "600px", margin: "0 auto 3rem", lineHeight: 1.7 }}>
+          <motion.p variants={fadeIn} style={{ fontSize: "1.1rem", opacity: 0.85, maxWidth: "850px", margin: "0 auto 3rem", lineHeight: 1.7 }}>
             Nuestro Modelo 360º elimina los límites entre la imaginación y la ejecución final. Centralizamos toda la carpintería técnica y mobiliario a través de un Project Manager (Interlocutor Único) para maximizar la rentabilidad de su proyecto sin comprometer la excelencia.
           </motion.p>
           <motion.div variants={fadeIn}>
@@ -114,10 +114,10 @@ export default function Home({ params: { locale } }: { params: { locale: string 
           >
             {/* Contract */}
             <motion.div variants={fadeIn} style={{ position: "relative", height: "450px", overflow: "hidden", borderRadius: "6px", border: "1px solid rgba(189,165,123,0.15)", cursor: "crosshair" }} className="hoverCard">
-              <motion.div className="imgContainer" style={{ width: "100%", height: "100%", transition: "transform 0.4s ease" }}>
-                <video src="/videos/Contract.mp4" autoPlay muted loop playsInline controls={false} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              <motion.div className="imgContainer" style={{ width: "100%", height: "100%" }}>
+                <video src="/videos/Contract.mp4" autoPlay muted loop playsInline controls={false} style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)" }} />
               </motion.div>
-              <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.4)" }}></div>
+              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 60%, transparent 100%)" }}></div>
               <div style={{ position: "absolute", bottom: "0", left: "0", width: "100%", padding: "2.5rem", color: "#fff", display: "flex", flexDirection: "column", justifyContent: "flex-end", height: "100%" }}>
                 <h3 className="cardTitle" style={{ fontFamily: "var(--font-serif)", fontSize: "1.8rem", marginBottom: "0.25rem", transition: "color 0.4s ease" }}>Contract</h3>
                 <p style={{ fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "0.15em", color: "rgba(255,255,255,0.8)" }}>PROMOTORES & GRANDES CUENTAS</p>
@@ -130,10 +130,10 @@ export default function Home({ params: { locale } }: { params: { locale: string 
 
             {/* Arquitectos */}
             <motion.div variants={fadeIn} style={{ position: "relative", height: "450px", overflow: "hidden", borderRadius: "6px", border: "1px solid rgba(189,165,123,0.15)", cursor: "crosshair" }} className="hoverCard">
-              <motion.div className="imgContainer" style={{ width: "100%", height: "100%", transition: "transform 0.4s ease" }}>
-                <video src="/videos/Arquitectos.mp4" autoPlay muted loop playsInline controls={false} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              <motion.div className="imgContainer" style={{ width: "100%", height: "100%" }}>
+                <video src="/videos/Arquitectos.mp4" autoPlay muted loop playsInline controls={false} style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)" }} />
               </motion.div>
-              <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.4)" }}></div>
+              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 60%, transparent 100%)" }}></div>
               <div style={{ position: "absolute", bottom: "0", left: "0", width: "100%", padding: "2.5rem", color: "#fff", display: "flex", flexDirection: "column", justifyContent: "flex-end", height: "100%" }}>
                 <h3 className="cardTitle" style={{ fontFamily: "var(--font-serif)", fontSize: "1.8rem", marginBottom: "0.25rem", transition: "color 0.4s ease" }}>Arquitectos</h3>
                 <p style={{ fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "0.15em", color: "rgba(255,255,255,0.8)" }}>PROYECTOS DE FIRMA</p>
@@ -146,10 +146,10 @@ export default function Home({ params: { locale } }: { params: { locale: string 
 
             {/* Reformistas */}
             <motion.div variants={fadeIn} style={{ position: "relative", height: "450px", overflow: "hidden", borderRadius: "6px", border: "1px solid rgba(189,165,123,0.15)", cursor: "crosshair" }} className="hoverCard">
-              <motion.div className="imgContainer" style={{ width: "100%", height: "100%", transition: "transform 0.4s ease" }}>
-                <video src="/videos/Reformistas.mp4" autoPlay muted loop playsInline controls={false} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              <motion.div className="imgContainer" style={{ width: "100%", height: "100%" }}>
+                <video src="/videos/Reformistas.mp4" autoPlay muted loop playsInline controls={false} style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)" }} />
               </motion.div>
-              <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.4)" }}></div>
+              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 60%, transparent 100%)" }}></div>
               <div style={{ position: "absolute", bottom: "0", left: "0", width: "100%", padding: "2.5rem", color: "#fff", display: "flex", flexDirection: "column", justifyContent: "flex-end", height: "100%" }}>
                 <h3 className="cardTitle" style={{ fontFamily: "var(--font-serif)", fontSize: "1.8rem", marginBottom: "0.25rem", transition: "color 0.4s ease" }}>Reformistas</h3>
                 <p style={{ fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "0.15em", color: "rgba(255,255,255,0.8)" }}>CARPINTERÍA ESTRUCTURAL</p>
@@ -162,10 +162,10 @@ export default function Home({ params: { locale } }: { params: { locale: string 
 
             {/* Interioristas */}
             <motion.div variants={fadeIn} style={{ position: "relative", height: "450px", overflow: "hidden", borderRadius: "6px", border: "1px solid rgba(189,165,123,0.15)", cursor: "crosshair" }} className="hoverCard">
-              <motion.div className="imgContainer" style={{ width: "100%", height: "100%", transition: "transform 0.4s ease" }}>
-                <video src="/videos/Interioristas.mp4" autoPlay muted loop playsInline controls={false} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              <motion.div className="imgContainer" style={{ width: "100%", height: "100%" }}>
+                <video src="/videos/Interioristas.mp4" autoPlay muted loop playsInline controls={false} style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)" }} />
               </motion.div>
-              <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.4)" }}></div>
+              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 60%, transparent 100%)" }}></div>
               <div style={{ position: "absolute", bottom: "0", left: "0", width: "100%", padding: "2.5rem", color: "#fff", display: "flex", flexDirection: "column", justifyContent: "flex-end", height: "100%" }}>
                 <h3 className="cardTitle" style={{ fontFamily: "var(--font-serif)", fontSize: "1.8rem", marginBottom: "0.25rem", transition: "color 0.4s ease" }}>Interioristas</h3>
                 <p style={{ fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "0.15em", color: "rgba(255,255,255,0.8)" }}>ESPACIOS DE AUTOR</p>
@@ -178,8 +178,8 @@ export default function Home({ params: { locale } }: { params: { locale: string 
 
             <style dangerouslySetInnerHTML={{
               __html: `
-              .hoverCard { transition: transform 0.4s ease; }
-              .hoverCard:hover { transform: scale(1.02); }
+              .hoverCard video { transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+              .hoverCard:hover video { transform: scale(1.06); }
               .hoverCard:hover .cardTitle { color: var(--color-accent) !important; }
               .hoverCard:hover .cardDetails { maxHeight: "200px"; opacity: 1; margin-top: "0"; }
               @media (pointer: coarse) {
