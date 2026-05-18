@@ -41,12 +41,13 @@ export default function Contacto() {
   const inputStyle = (fieldName: string) => ({
     width: "100%",
     padding: "1.2rem",
-    borderRadius: "4px",
-    border: focusedField === fieldName ? "1px solid var(--color-accent)" : "1px solid var(--color-border)",
-    background: focusedField === fieldName ? "rgba(189,165,123,0.02)" : "var(--color-bg)",
+    borderRadius: "0",
+    border: "none",
+    borderBottom: focusedField === fieldName ? "1px solid var(--color-accent)" : "1px solid #333333",
+    background: "transparent",
     color: "var(--color-text-main)",
     outline: "none",
-    transition: "all 0.3s ease",
+    transition: "border-color 0.3s ease",
     fontSize: "0.95rem"
   });
 

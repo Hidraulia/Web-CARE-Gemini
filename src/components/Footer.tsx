@@ -1,7 +1,16 @@
+"use client";
+
 import Link from 'next/link';
 import Logo from './Logo';
+import { usePathname } from 'next/navigation';
 
 export default function Footer({ locale }: { locale: string }) {
+  const pathname = usePathname() || "";
+  
+  if (pathname.includes('/privado')) {
+    return null;
+  }
+
   return (
     <footer style={{ background: '#000000', color: 'var(--color-text-light)', padding: '4rem 2rem', marginTop: 'auto', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '3rem' }}>
@@ -28,16 +37,16 @@ export default function Footer({ locale }: { locale: string }) {
         <div>
           <h4 style={{ color: '#fff', marginBottom: '1.2rem', fontSize: '1rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Legal & Redes</h4>
           <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.8rem', fontSize: '0.9rem' }}>
-            <li><a href="#" style={{ color: 'inherit', textDecoration: 'none' }}>Política de Privacidad</a></li>
             <li><a href="#" style={{ color: 'inherit', textDecoration: 'none' }}>Aviso Legal</a></li>
-            <li><a href="https://instagram.com" target="_blank" rel="noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>Instagram</a></li>
-            <li><a href="https://linkedin.com" target="_blank" rel="noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>LinkedIn</a></li>
+            <li><a href="#" style={{ color: 'inherit', textDecoration: 'none' }}>Política de Privacidad</a></li>
+            <li><a href="#" style={{ color: 'inherit', textDecoration: 'none' }}>Términos y Condiciones</a></li>
+            <li><a href="#" style={{ color: 'inherit', textDecoration: 'none' }}>LinkedIn</a></li>
+            <li><a href="#" style={{ color: 'inherit', textDecoration: 'none' }}>Instagram</a></li>
           </ul>
         </div>
       </div>
-      
-      <div style={{ maxWidth: '1200px', margin: '3rem auto 0', paddingTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.1)', textAlign: 'center', fontSize: '0.85rem', opacity: 0.7 }}>
-        &copy; {new Date().getFullYear()} CARE Mobiliario. Todos los derechos reservados.
+      <div style={{ maxWidth: '1200px', margin: '3rem auto 0', paddingTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.05)', textAlign: 'center', fontSize: '0.8rem', opacity: 0.6 }}>
+        &copy; {new Date().getFullYear()} CARE & DECATTA. Todos los derechos reservados.
       </div>
     </footer>
   );

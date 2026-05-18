@@ -81,11 +81,7 @@ export default function Header({ locale }: { locale: string }) {
               ÁREA PRIVADA
             </Link>
           )}
-          {isLoggedIn && (
-             <button onClick={() => signOut({ callbackUrl: '/', redirect: true })} style={{ background: 'transparent', border: 'none', cursor: 'pointer', fontSize: '0.7rem', color: 'var(--color-text-light)', borderLeft: '1px solid rgba(255,255,255,0.1)', paddingLeft: '1rem', textTransform: "uppercase", letterSpacing: "0.1em" }}>
-               SALIR
-             </button>
-          )}
+
         </nav>
 
         {/* Mobile Toggle */}
@@ -169,11 +165,7 @@ export default function Header({ locale }: { locale: string }) {
                   ÁREA PRIVADA
                 </Link>
               )}
-              {isLoggedIn && (
-                <button onClick={() => signOut({ callbackUrl: '/', redirect: true })} style={{ background: 'transparent', border: 'none', cursor: 'pointer', fontSize: '1rem', color: 'var(--color-text-light)', textAlign: "left", padding: 0, textTransform: "uppercase", letterSpacing: "0.1em" }}>
-                  Cerrar Sesión
-                </button>
-              )}
+
             </nav>
           </motion.div>
         )}
