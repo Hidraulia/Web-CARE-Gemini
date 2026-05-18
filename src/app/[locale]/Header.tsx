@@ -100,7 +100,7 @@ export default function Header({ locale }: { locale: string }) {
           }
           .hover-underline {
             color: #FFFFFF;
-            transition: color 0.3s ease;
+            transition: color 0.4s ease;
           }
           .hover-underline:hover {
             color: var(--color-accent) !important;
