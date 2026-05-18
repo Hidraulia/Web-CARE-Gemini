@@ -36,8 +36,17 @@ export default function Home({ params: { locale } }: { params: { locale: string 
             transition={{ duration: 12, ease: "easeOut" }}
             style={{ width: "100%", height: "100%" }}
           >
-            <img src="/images-slider/img-slide-3.jpg" alt="Mobiliario de Diseño" loading="eager" style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.4) contrast(1.1) saturate(0.8)' }} />
+            <video 
+              src="/videos/care-factory.mp4" 
+              autoPlay 
+              muted 
+              loop 
+              playsInline 
+              controls={false} 
+              style={{ width: "100%", height: "100%", objectFit: "cover" }} 
+            />
           </motion.div>
+          <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", background: "rgba(0,0,0,0.5)", zIndex: 1 }}></div>
         </motion.div>
 
         <motion.div
@@ -81,85 +90,87 @@ export default function Home({ params: { locale } }: { params: { locale: string 
         </motion.div>
       </section>
 
-      <section className={styles.section} style={{ padding: "8rem 2rem", background: "#000000", color: "#FFFFFF" }}>
-        <motion.div
-          className={styles.sectionHeader}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={fadeIn}
-          style={{ textAlign: "center", marginBottom: "5rem" }}
-        >
-          <p className={styles.sectionSubtitle} style={{ textTransform: "uppercase", letterSpacing: "0.15em", fontSize: "0.85rem", color: "var(--color-accent)", marginBottom: "1rem" }}>Áreas de Experiencia</p>
-          <h2 className={styles.sectionTitle} style={{ fontFamily: "var(--font-serif)", fontSize: "3rem", color: "#FFFFFF" }}>Segmentos de Servicio</h2>
-        </motion.div>
-
-        <motion.div
-          className={styles.grid}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={staggerContainer}
-          style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "2rem", maxWidth: "1200px", margin: "0 auto" }}
-        >
-          {/* B2B Empresas */}
-          <motion.div variants={fadeIn} style={{ position: "relative", height: "450px", overflow: "hidden", borderRadius: "8px", cursor: "crosshair" }} className="hoverCard">
-            <motion.div className="imgContainer" style={{ width: "100%", height: "100%", transition: "transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)" }}>
-              <img src="/img/company.jpg" alt="B2B Empresas" loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.6)" }} />
-            </motion.div>
-            <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%)" }}></div>
-            <div style={{ position: "absolute", bottom: "0", left: "0", width: "100%", padding: "2.5rem", color: "#fff", display: "flex", flexDirection: "column", justifyContent: "flex-end", height: "100%" }}>
-              <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "1.8rem", marginBottom: "0.5rem" }}>Empresas & Promotoras</h3>
-              <div className="cardDetails" style={{ maxHeight: "0", overflow: "hidden", opacity: 0, transition: "all 0.5s ease" }}>
-                <p style={{ marginBottom: "1.5rem", fontSize: "0.95rem", opacity: 0.9, lineHeight: 1.6, paddingTop: "1rem" }}>Capacidad operativa, solvencia industrial industrializada y seguimiento integral de fabricación a gran escala.</p>
-                <Link href={`/${locale}/auth/login?role=b2b`} style={{ display: "inline-block", color: "var(--color-accent)", textTransform: "uppercase", fontSize: "0.8rem", letterSpacing: "0.1em", borderBottom: "1px solid var(--color-accent)", paddingBottom: "2px", textDecoration: "none" }}>Acceso Partners</Link>
-              </div>
-            </div>
+      <section style={{ width: "100%", padding: "8rem 0", background: "#000000", color: "#FFFFFF", margin: 0 }}>
+        <div style={{ maxWidth: "1400px", margin: "0 auto", padding: "0 2rem" }}>
+          <motion.div
+            className={styles.sectionHeader}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeIn}
+            style={{ textAlign: "center", marginBottom: "5rem" }}
+          >
+            <p className={styles.sectionSubtitle} style={{ textTransform: "uppercase", letterSpacing: "0.15em", fontSize: "0.85rem", color: "var(--color-accent)", marginBottom: "1rem" }}>Áreas de Experiencia</p>
+            <h2 className={styles.sectionTitle} style={{ fontFamily: "var(--font-serif)", fontSize: "3rem", color: "#FFFFFF" }}>Segmentos de Servicio</h2>
           </motion.div>
 
-          {/* Interioristas */}
-          <motion.div variants={fadeIn} style={{ position: "relative", height: "450px", overflow: "hidden", borderRadius: "8px", cursor: "crosshair" }} className="hoverCard">
-            <motion.div className="imgContainer" style={{ width: "100%", height: "100%", transition: "transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)" }}>
-              <img src="/img/projects/img2.jpg" alt="Arquitectos" loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.6)" }} />
-            </motion.div>
-            <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%)" }}></div>
-            <div style={{ position: "absolute", bottom: "0", left: "0", width: "100%", padding: "2.5rem", color: "#fff", display: "flex", flexDirection: "column", justifyContent: "flex-end", height: "100%" }}>
-              <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "1.8rem", marginBottom: "0.5rem" }}>Arquitectos & Diseño</h3>
-              <div className="cardDetails" style={{ maxHeight: "0", overflow: "hidden", opacity: 0, transition: "all 0.5s ease" }}>
-                <p style={{ marginBottom: "1.5rem", fontSize: "0.95rem", opacity: 0.9, lineHeight: 1.6, paddingTop: "1rem" }}>Colaboración técnica, centro de recursos CAD y profunda sensibilidad al detalle constructivo en cada plano.</p>
-                <Link href={`/${locale}/auth/login?role=interiorista`} style={{ display: "inline-block", color: "var(--color-accent)", textTransform: "uppercase", fontSize: "0.8rem", letterSpacing: "0.1em", borderBottom: "1px solid var(--color-accent)", paddingBottom: "2px", textDecoration: "none" }}>Centro Técnico</Link>
+          <motion.div
+            className={styles.grid}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={staggerContainer}
+            style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "2rem", maxWidth: "1200px", margin: "0 auto" }}
+          >
+            {/* B2B Empresas */}
+            <motion.div variants={fadeIn} style={{ position: "relative", height: "450px", overflow: "hidden", borderRadius: "8px", cursor: "crosshair" }} className="hoverCard">
+              <motion.div className="imgContainer" style={{ width: "100%", height: "100%", transition: "transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)" }}>
+                <img src="/img/company.jpg" alt="B2B Empresas" loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.6)" }} />
+              </motion.div>
+              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%)" }}></div>
+              <div style={{ position: "absolute", bottom: "0", left: "0", width: "100%", padding: "2.5rem", color: "#fff", display: "flex", flexDirection: "column", justifyContent: "flex-end", height: "100%" }}>
+                <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "1.8rem", marginBottom: "0.5rem" }}>Empresas & Promotoras</h3>
+                <div className="cardDetails" style={{ maxHeight: "0", overflow: "hidden", opacity: 0, transition: "all 0.5s ease" }}>
+                  <p style={{ marginBottom: "1.5rem", fontSize: "0.95rem", opacity: 0.9, lineHeight: 1.6, paddingTop: "1rem" }}>Capacidad operativa, solvencia industrial industrializada y seguimiento integral de fabricación a gran escala.</p>
+                  <Link href={`/${locale}/auth/login?role=b2b`} style={{ display: "inline-block", color: "var(--color-accent)", textTransform: "uppercase", fontSize: "0.8rem", letterSpacing: "0.1em", borderBottom: "1px solid var(--color-accent)", paddingBottom: "2px", textDecoration: "none" }}>Acceso Partners</Link>
+                </div>
               </div>
-            </div>
-          </motion.div>
-
-          {/* B2C Selectivo */}
-          <motion.div variants={fadeIn} style={{ position: "relative", height: "450px", overflow: "hidden", borderRadius: "8px", cursor: "crosshair" }} className="hoverCard">
-            <motion.div className="imgContainer" style={{ width: "100%", height: "100%", transition: "transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)" }}>
-              <img src="/img/vestidor.jpg" alt="B2C" loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.6)" }} />
             </motion.div>
-            <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%)" }}></div>
-            <div style={{ position: "absolute", bottom: "0", left: "0", width: "100%", padding: "2.5rem", color: "#fff", display: "flex", flexDirection: "column", justifyContent: "flex-end", height: "100%" }}>
-              <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "1.8rem", marginBottom: "0.5rem" }}>Clientes B2C VIP</h3>
-              <div className="cardDetails" style={{ maxHeight: "0", overflow: "hidden", opacity: 0, transition: "all 0.5s ease" }}>
-                <p style={{ marginBottom: "1.5rem", fontSize: "0.95rem", opacity: 0.9, lineHeight: 1.6, paddingTop: "1rem" }}>Acompañamiento premium, personalización absoluta y seguimiento detallado de la instalación final en su hogar.</p>
-                <Link href={`/${locale}/auth/login?role=b2c`} style={{ display: "inline-block", color: "var(--color-accent)", textTransform: "uppercase", fontSize: "0.8rem", letterSpacing: "0.1em", borderBottom: "1px solid var(--color-accent)", paddingBottom: "2px", textDecoration: "none" }}>Área Cliente</Link>
-              </div>
-            </div>
-          </motion.div>
 
-          <style dangerouslySetInnerHTML={{
-            __html: `
-            .hoverCard:hover .imgContainer { transform: scale(1.05); }
-            .hoverCard:hover .cardDetails { maxHeight: "200px"; opacity: 1; margin-top: "0"; }
-            @media (pointer: coarse) {
-              .cardDetails { maxHeight: "200px" !important; opacity: 1 !important; }
-            }
-          `}} />
-        </motion.div>
+            {/* Interioristas */}
+            <motion.div variants={fadeIn} style={{ position: "relative", height: "450px", overflow: "hidden", borderRadius: "8px", cursor: "crosshair" }} className="hoverCard">
+              <motion.div className="imgContainer" style={{ width: "100%", height: "100%", transition: "transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)" }}>
+                <img src="/img/projects/img2.jpg" alt="Arquitectos" loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.6)" }} />
+              </motion.div>
+              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%)" }}></div>
+              <div style={{ position: "absolute", bottom: "0", left: "0", width: "100%", padding: "2.5rem", color: "#fff", display: "flex", flexDirection: "column", justifyContent: "flex-end", height: "100%" }}>
+                <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "1.8rem", marginBottom: "0.5rem" }}>Arquitectos & Diseño</h3>
+                <div className="cardDetails" style={{ maxHeight: "0", overflow: "hidden", opacity: 0, transition: "all 0.5s ease" }}>
+                  <p style={{ marginBottom: "1.5rem", fontSize: "0.95rem", opacity: 0.9, lineHeight: 1.6, paddingTop: "1rem" }}>Colaboración técnica, centro de recursos CAD y profunda sensibilidad al detalle constructivo en cada plano.</p>
+                  <Link href={`/${locale}/auth/login?role=interiorista`} style={{ display: "inline-block", color: "var(--color-accent)", textTransform: "uppercase", fontSize: "0.8rem", letterSpacing: "0.1em", borderBottom: "1px solid var(--color-accent)", paddingBottom: "2px", textDecoration: "none" }}>Centro Técnico</Link>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* B2C Selectivo */}
+            <motion.div variants={fadeIn} style={{ position: "relative", height: "450px", overflow: "hidden", borderRadius: "8px", cursor: "crosshair" }} className="hoverCard">
+              <motion.div className="imgContainer" style={{ width: "100%", height: "100%", transition: "transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)" }}>
+                <img src="/img/vestidor.jpg" alt="B2C" loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.6)" }} />
+              </motion.div>
+              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%)" }}></div>
+              <div style={{ position: "absolute", bottom: "0", left: "0", width: "100%", padding: "2.5rem", color: "#fff", display: "flex", flexDirection: "column", justifyContent: "flex-end", height: "100%" }}>
+                <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "1.8rem", marginBottom: "0.5rem" }}>Clientes B2C VIP</h3>
+                <div className="cardDetails" style={{ maxHeight: "0", overflow: "hidden", opacity: 0, transition: "all 0.5s ease" }}>
+                  <p style={{ marginBottom: "1.5rem", fontSize: "0.95rem", opacity: 0.9, lineHeight: 1.6, paddingTop: "1rem" }}>Acompañamiento premium, personalización absoluta y seguimiento detallado de la instalación final en su hogar.</p>
+                  <Link href={`/${locale}/auth/login?role=b2c`} style={{ display: "inline-block", color: "var(--color-accent)", textTransform: "uppercase", fontSize: "0.8rem", letterSpacing: "0.1em", borderBottom: "1px solid var(--color-accent)", paddingBottom: "2px", textDecoration: "none" }}>Área Cliente</Link>
+                </div>
+              </div>
+            </motion.div>
+
+            <style dangerouslySetInnerHTML={{
+              __html: `
+              .hoverCard:hover .imgContainer { transform: scale(1.05); }
+              .hoverCard:hover .cardDetails { maxHeight: "200px"; opacity: 1; margin-top: "0"; }
+              @media (pointer: coarse) {
+                .cardDetails { maxHeight: "200px" !important; opacity: 1 !important; }
+              }
+            `}} />
+          </motion.div>
+        </div>
       </section>
 
-      <section className={styles.section} style={{ backgroundColor: '#000000', color: '#FFFFFF', borderRadius: '4px', padding: "8rem 2rem" }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem', alignItems: 'center', maxWidth: "1200px", margin: "0 auto" }}>
+      <section style={{ width: "100%", padding: "8rem 0", backgroundColor: '#000000', color: '#FFFFFF', margin: 0 }}>
+        <div style={{ maxWidth: "1400px", margin: "0 auto", padding: "0 2rem", display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem', alignItems: 'center' }}>
           <motion.div
             initial="hidden"
             whileInView="visible"
